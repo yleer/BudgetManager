@@ -21,6 +21,7 @@
  - Realm
  - FScalendar - https://github.com/HeroTransitions/Hero
  - Hero - https://github.com/HeroTransitions/Hero
+ - Almofire
  - Kakao OCR API 
 
 
