@@ -13,6 +13,13 @@
 		889FC8CF2744DCAF00F16ADF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 889FC8CD2744DCAF00F16ADF /* Main.storyboard */; };
 		889FC8D12744DCB200F16ADF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 889FC8D02744DCB200F16ADF /* Assets.xcassets */; };
 		889FC8D42744DCB200F16ADF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 889FC8D22744DCB200F16ADF /* LaunchScreen.storyboard */; };
+		88B3BABD274637AC00ECB3EB /* CalendarSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BABC274637AC00ECB3EB /* CalendarSB.storyboard */; };
+		88B3BABF274637BE00ECB3EB /* MonthlyReportSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BABE274637BE00ECB3EB /* MonthlyReportSB.storyboard */; };
+		88B3BAC1274637CC00ECB3EB /* SettingSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BAC0274637CC00ECB3EB /* SettingSB.storyboard */; };
+		88B3BAC42746380A00ECB3EB /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAC32746380A00ECB3EB /* CalendarViewController.swift */; };
+		88B3BAC62746382100ECB3EB /* MonthlyReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAC52746382100ECB3EB /* MonthlyReportViewController.swift */; };
+		88B3BAC82746384300ECB3EB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAC72746384300ECB3EB /* SettingViewController.swift */; };
+		88B3BACA27463D9F00ECB3EB /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		889FC8D02744DCB200F16ADF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		889FC8D32744DCB200F16ADF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		889FC8D52744DCB200F16ADF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88B3BABC274637AC00ECB3EB /* CalendarSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarSB.storyboard; sourceTree = "<group>"; };
+		88B3BABE274637BE00ECB3EB /* MonthlyReportSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MonthlyReportSB.storyboard; sourceTree = "<group>"; };
+		88B3BAC0274637CC00ECB3EB /* SettingSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingSB.storyboard; sourceTree = "<group>"; };
+		88B3BAC32746380A00ECB3EB /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		88B3BAC52746382100ECB3EB /* MonthlyReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyReportViewController.swift; sourceTree = "<group>"; };
+		88B3BAC72746384300ECB3EB /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +71,29 @@
 			isa = PBXGroup;
 			children = (
 				889FC8C72744DCAF00F16ADF /* AppDelegate.swift */,
-				889FC8C92744DCAF00F16ADF /* SceneDelegate.swift */,
-				889FC8CB2744DCAF00F16ADF /* ViewController.swift */,
 				889FC8CD2744DCAF00F16ADF /* Main.storyboard */,
-				889FC8D02744DCB200F16ADF /* Assets.xcassets */,
+				88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */,
+				889FC8CB2744DCAF00F16ADF /* ViewController.swift */,
 				889FC8D22744DCB200F16ADF /* LaunchScreen.storyboard */,
+				88B3BABC274637AC00ECB3EB /* CalendarSB.storyboard */,
+				88B3BAC32746380A00ECB3EB /* CalendarViewController.swift */,
+				88B3BABE274637BE00ECB3EB /* MonthlyReportSB.storyboard */,
+				88B3BAC52746382100ECB3EB /* MonthlyReportViewController.swift */,
+				88B3BAC0274637CC00ECB3EB /* SettingSB.storyboard */,
+				88B3BAC72746384300ECB3EB /* SettingViewController.swift */,
+				88B3BAC2274637E700ECB3EB /* Supporting Files */,
 				889FC8D52744DCB200F16ADF /* Info.plist */,
 			);
 			path = BudgetManager;
+			sourceTree = "<group>";
+		};
+		88B3BAC2274637E700ECB3EB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				889FC8C92744DCAF00F16ADF /* SceneDelegate.swift */,
+				889FC8D02744DCB200F16ADF /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +156,10 @@
 			files = (
 				889FC8D42744DCB200F16ADF /* LaunchScreen.storyboard in Resources */,
 				889FC8D12744DCB200F16ADF /* Assets.xcassets in Resources */,
+				88B3BABF274637BE00ECB3EB /* MonthlyReportSB.storyboard in Resources */,
 				889FC8CF2744DCAF00F16ADF /* Main.storyboard in Resources */,
+				88B3BAC1274637CC00ECB3EB /* SettingSB.storyboard in Resources */,
+				88B3BABD274637AC00ECB3EB /* CalendarSB.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +170,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88B3BAC42746380A00ECB3EB /* CalendarViewController.swift in Sources */,
 				889FC8CC2744DCAF00F16ADF /* ViewController.swift in Sources */,
 				889FC8C82744DCAF00F16ADF /* AppDelegate.swift in Sources */,
+				88B3BAC62746382100ECB3EB /* MonthlyReportViewController.swift in Sources */,
 				889FC8CA2744DCAF00F16ADF /* SceneDelegate.swift in Sources */,
+				88B3BAC82746384300ECB3EB /* SettingViewController.swift in Sources */,
+				88B3BACA27463D9F00ECB3EB /* AddExpenseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
