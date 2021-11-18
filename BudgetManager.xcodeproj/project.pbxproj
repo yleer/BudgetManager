@@ -20,6 +20,12 @@
 		88B3BAC62746382100ECB3EB /* MonthlyReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAC52746382100ECB3EB /* MonthlyReportViewController.swift */; };
 		88B3BAC82746384300ECB3EB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAC72746384300ECB3EB /* SettingViewController.swift */; };
 		88B3BACA27463D9F00ECB3EB /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */; };
+		88B3BACD27463EE700ECB3EB /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 88B3BACC27463EE700ECB3EB /* FSCalendar */; };
+		88B3BAD027463EF500ECB3EB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 88B3BACF27463EF500ECB3EB /* Alamofire */; };
+		88B3BAD327463F0200ECB3EB /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 88B3BAD227463F0200ECB3EB /* SwiftyJSON */; };
+		88B3BAD627463F2B00ECB3EB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 88B3BAD527463F2B00ECB3EB /* Realm */; };
+		88B3BAD827463F2B00ECB3EB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 88B3BAD727463F2B00ECB3EB /* RealmSwift */; };
+		88B3BADA27466A0900ECB3EB /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAD927466A0900ECB3EB /* MainCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +44,7 @@
 		88B3BAC52746382100ECB3EB /* MonthlyReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyReportViewController.swift; sourceTree = "<group>"; };
 		88B3BAC72746384300ECB3EB /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
+		88B3BAD927466A0900ECB3EB /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +52,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88B3BAD327463F0200ECB3EB /* SwiftyJSON in Frameworks */,
+				88B3BACD27463EE700ECB3EB /* FSCalendar in Frameworks */,
+				88B3BAD627463F2B00ECB3EB /* Realm in Frameworks */,
+				88B3BAD827463F2B00ECB3EB /* RealmSwift in Frameworks */,
+				88B3BAD027463EF500ECB3EB /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +84,7 @@
 			children = (
 				889FC8C72744DCAF00F16ADF /* AppDelegate.swift */,
 				889FC8CD2744DCAF00F16ADF /* Main.storyboard */,
+				88B3BAD927466A0900ECB3EB /* MainCollectionViewCell.swift */,
 				88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */,
 				889FC8CB2744DCAF00F16ADF /* ViewController.swift */,
 				889FC8D22744DCB200F16ADF /* LaunchScreen.storyboard */,
@@ -81,6 +94,7 @@
 				88B3BAC52746382100ECB3EB /* MonthlyReportViewController.swift */,
 				88B3BAC0274637CC00ECB3EB /* SettingSB.storyboard */,
 				88B3BAC72746384300ECB3EB /* SettingViewController.swift */,
+				889FC8D02744DCB200F16ADF /* Assets.xcassets */,
 				88B3BAC2274637E700ECB3EB /* Supporting Files */,
 				889FC8D52744DCB200F16ADF /* Info.plist */,
 			);
@@ -91,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				889FC8C92744DCAF00F16ADF /* SceneDelegate.swift */,
-				889FC8D02744DCB200F16ADF /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -112,6 +125,13 @@
 			dependencies = (
 			);
 			name = BudgetManager;
+			packageProductDependencies = (
+				88B3BACC27463EE700ECB3EB /* FSCalendar */,
+				88B3BACF27463EF500ECB3EB /* Alamofire */,
+				88B3BAD227463F0200ECB3EB /* SwiftyJSON */,
+				88B3BAD527463F2B00ECB3EB /* Realm */,
+				88B3BAD727463F2B00ECB3EB /* RealmSwift */,
+			);
 			productName = BudgetManager;
 			productReference = 889FC8C42744DCAF00F16ADF /* BudgetManager.app */;
 			productType = "com.apple.product-type.application";
@@ -140,6 +160,12 @@
 				Base,
 			);
 			mainGroup = 889FC8BB2744DCAF00F16ADF;
+			packageReferences = (
+				88B3BACB27463EE700ECB3EB /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				88B3BACE27463EF500ECB3EB /* XCRemoteSwiftPackageReference "Alamofire" */,
+				88B3BAD127463F0200ECB3EB /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				88B3BAD427463F2B00ECB3EB /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 889FC8C52744DCAF00F16ADF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -173,6 +199,7 @@
 				88B3BAC42746380A00ECB3EB /* CalendarViewController.swift in Sources */,
 				889FC8CC2744DCAF00F16ADF /* ViewController.swift in Sources */,
 				889FC8C82744DCAF00F16ADF /* AppDelegate.swift in Sources */,
+				88B3BADA27466A0900ECB3EB /* MainCollectionViewCell.swift in Sources */,
 				88B3BAC62746382100ECB3EB /* MonthlyReportViewController.swift in Sources */,
 				889FC8CA2744DCAF00F16ADF /* SceneDelegate.swift in Sources */,
 				88B3BAC82746384300ECB3EB /* SettingViewController.swift in Sources */,
@@ -253,7 +280,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -308,7 +335,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -342,7 +369,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -370,7 +397,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -396,6 +423,69 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		88B3BACB27463EE700ECB3EB /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		88B3BACE27463EF500ECB3EB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		88B3BAD127463F0200ECB3EB /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		88B3BAD427463F2B00ECB3EB /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		88B3BACC27463EE700ECB3EB /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88B3BACB27463EE700ECB3EB /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+		88B3BACF27463EF500ECB3EB /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88B3BACE27463EF500ECB3EB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		88B3BAD227463F0200ECB3EB /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88B3BAD127463F0200ECB3EB /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		88B3BAD527463F2B00ECB3EB /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88B3BAD427463F2B00ECB3EB /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		88B3BAD727463F2B00ECB3EB /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88B3BAD427463F2B00ECB3EB /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 889FC8BC2744DCAF00F16ADF /* Project object */;
 }
