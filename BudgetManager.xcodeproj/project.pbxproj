@@ -26,6 +26,7 @@
 		88B3BAD627463F2B00ECB3EB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 88B3BAD527463F2B00ECB3EB /* Realm */; };
 		88B3BAD827463F2B00ECB3EB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 88B3BAD727463F2B00ECB3EB /* RealmSwift */; };
 		88B3BADA27466A0900ECB3EB /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAD927466A0900ECB3EB /* MainCollectionViewCell.swift */; };
+		88C078D22747D0D800CF0900 /* CategoryPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C078D12747D0D800CF0900 /* CategoryPopUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		88B3BAC72746384300ECB3EB /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		88B3BAD927466A0900ECB3EB /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		88C078D12747D0D800CF0900 /* CategoryPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			children = (
 				889FC8C72744DCAF00F16ADF /* AppDelegate.swift */,
 				889FC8CD2744DCAF00F16ADF /* Main.storyboard */,
+				88C078D12747D0D800CF0900 /* CategoryPopUpViewController.swift */,
 				88B3BAD927466A0900ECB3EB /* MainCollectionViewCell.swift */,
 				88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */,
 				889FC8CB2744DCAF00F16ADF /* ViewController.swift */,
@@ -202,6 +205,7 @@
 				88B3BADA27466A0900ECB3EB /* MainCollectionViewCell.swift in Sources */,
 				88B3BAC62746382100ECB3EB /* MonthlyReportViewController.swift in Sources */,
 				889FC8CA2744DCAF00F16ADF /* SceneDelegate.swift in Sources */,
+				88C078D22747D0D800CF0900 /* CategoryPopUpViewController.swift in Sources */,
 				88B3BAC82746384300ECB3EB /* SettingViewController.swift in Sources */,
 				88B3BACA27463D9F00ECB3EB /* AddExpenseViewController.swift in Sources */,
 			);

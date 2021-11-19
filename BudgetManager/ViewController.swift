@@ -17,11 +17,15 @@ class ViewController: UIViewController {
             print(selectedDate)
         }
     }
+    @IBOutlet weak var addButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fsCalendarConfigure()
         historyCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        addButton.setTitle("", for: .normal)
+        addButton.layer.cornerRadius = 15
+        addButton.backgroundColor = .green
     }
     
     func fsCalendarConfigure() {
@@ -45,10 +49,17 @@ class ViewController: UIViewController {
         return dateFormatter.string(from: date)
     }
 
-
+    @IBAction func addButtonClicked(_ sender: UIButton) {
+        print("clicked")
+    }
+    
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("dfsg")
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }

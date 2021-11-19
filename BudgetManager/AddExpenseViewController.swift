@@ -7,23 +7,54 @@
 
 import UIKit
 
-class AddExpenseViewController: UIViewController {
+class AddExpenseViewController: UIViewController{
 
+    
+    var selectedCategotyIndex: Int?
+    
+    @IBOutlet weak var expenseSegment: UISegmentedControl!
+    @IBOutlet weak var paymentSegment: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    }
+
+    
+    @IBAction func categoryButtonClicked(_ sender: UIButton) {
+        guard let vc =  self.storyboard?.instantiateViewController(withIdentifier: "CategoryPopUpViewController") as?  CategoryPopUpViewController else { return }
+        
+        
+        vc.buttonActionHandler = {
+            self.selectedCategotyIndex = vc.selectedButton
+        }
+        
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: false, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func reciptButtonClicked(_ sender: UIButton) {
+        
+        let alertVC = UIAlertController(title: "영수증으로 내역을 첨부하시겠습니까?", message: "", preferredStyle: .alert)
+        
+        let fromGallaryButton = UIAlertAction(title: "갤러리", style: .default, handler: nil)
+        let fromCameraButton = UIAlertAction(title: "카메라", style: .default, handler: nil)
+        
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        alertVC.addAction(fromCameraButton)
+        alertVC.addAction(fromGallaryButton)
+        alertVC.addAction(cancelButton)
+        
+       present(alertVC, animated: true, completion: nil)
     }
-    */
-
+    
+    
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        // MARK: 여기 값으로 segment 컨트롤.
+        print(sender.selectedSegmentIndex)
+    }
+    
+    
+    
 }
