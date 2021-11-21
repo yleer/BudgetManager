@@ -1,34 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Pla-uQ-LiO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Month Report-->
+        <!--월간 리포트-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="MonthlyReportViewController" id="Y6W-OH-hqX" customClass="MonthlyReportViewController" customModule="BudgetManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="82" translatesAutoresizingMaskIntoConstraints="NO" id="rS1-Og-krg">
+                                <rect key="frame" x="20" y="140.5" width="374" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수익" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oST-ZQ-6IG">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지출" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGP-hl-HSc">
+                                        <rect key="frame" x="152" y="0.0" width="70" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="남은 금액" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jmw-mL-UlG">
+                                        <rect key="frame" x="304" y="0.0" width="70" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="CwM-9u-grs"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4K-5z-bW1">
+                                <rect key="frame" x="20" y="210.5" width="374" height="20"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="8hI-4b-kFr"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4I-zf-3t9" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="72" y="519.5" width="270" height="270"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="U4I-zf-3t9" secondAttribute="height" multiplier="1:1" id="QGW-0J-bkD"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vin-eL-dWk">
+                                <rect key="frame" x="192" y="100" width="30" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0HT-vl-CwN" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="40" y="250.5" width="334" height="239"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBrownColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rS1-Og-krg" secondAttribute="trailing" constant="20" id="4qc-Ks-eGr"/>
+                            <constraint firstItem="rS1-Og-krg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="F6d-QP-eln"/>
+                            <constraint firstItem="0HT-vl-CwN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="FTg-wS-Xhb"/>
+                            <constraint firstItem="H4K-5z-bW1" firstAttribute="top" secondItem="rS1-Og-krg" secondAttribute="bottom" constant="20" id="I5p-l2-Dir"/>
+                            <constraint firstItem="0HT-vl-CwN" firstAttribute="top" secondItem="H4K-5z-bW1" secondAttribute="bottom" constant="20" id="LGW-Ot-VAz"/>
+                            <constraint firstItem="U4I-zf-3t9" firstAttribute="top" secondItem="0HT-vl-CwN" secondAttribute="bottom" constant="30" id="TdE-6N-NlS"/>
+                            <constraint firstItem="Vin-eL-dWk" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="VOY-6t-B4B"/>
+                            <constraint firstItem="H4K-5z-bW1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="bey-nb-Xyd"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0HT-vl-CwN" secondAttribute="trailing" constant="40" id="cdB-T6-MPD"/>
+                            <constraint firstItem="U4I-zf-3t9" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.652174" id="cvj-1O-Cx5"/>
+                            <constraint firstItem="Vin-eL-dWk" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="12" id="eim-6c-4pY"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="H4K-5z-bW1" secondAttribute="trailing" constant="20" id="mxT-2z-oxl"/>
+                            <constraint firstItem="rS1-Og-krg" firstAttribute="top" secondItem="Vin-eL-dWk" secondAttribute="bottom" constant="20" id="qTR-4z-wYk"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="U4I-zf-3t9" secondAttribute="trailing" constant="72" id="rn1-Ov-v1Q"/>
+                            <constraint firstItem="0HT-vl-CwN" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.266741" id="xoI-gY-bpX"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Month Report" id="eY5-wA-26o"/>
+                    <navigationItem key="navigationItem" title="월간 리포트" id="jwv-qP-yq0"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="barChart" destination="0HT-vl-CwN" id="xxl-V3-T7I"/>
+                        <outlet property="pieChart" destination="U4I-zf-3t9" id="6ve-XN-1uk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133" y="110"/>
+            <point key="canvasLocation" x="1042.0289855072465" y="109.82142857142857"/>
+        </scene>
+        <!--Month Report-->
+        <scene sceneID="emA-tg-LTT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pla-uQ-LiO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Month Report" id="eY5-wA-26o"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9RF-V9-D3I">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="VIV-Sb-dwA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oJg-9G-Fff" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="109.82142857142857"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

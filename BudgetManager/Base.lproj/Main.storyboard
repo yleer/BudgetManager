@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ieK-ds-zsf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o4O-tO-XBV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -67,7 +67,7 @@
                                                                 <constraint firstAttribute="width" secondItem="bOP-lL-LSW" secondAttribute="height" id="gVC-4J-IzN"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clothes" translatesAutoresizingMaskIntoConstraints="NO" id="Rbd-f7-zLF">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beach" translatesAutoresizingMaskIntoConstraints="NO" id="Rbd-f7-zLF">
                                                             <rect key="frame" x="0.0" y="25" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="Rbd-f7-zLF" secondAttribute="height" id="hqe-GP-Y0W"/>
@@ -166,13 +166,13 @@
         <!--Add Expense View Controller-->
         <scene sceneID="MJf-yx-Cgo">
             <objects>
-                <viewController id="ieK-ds-zsf" customClass="AddExpenseViewController" customModule="BudgetManager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddExpenseViewController" id="ieK-ds-zsf" customClass="AddExpenseViewController" customModule="BudgetManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KuP-PE-8ZK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="금액" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Im4-4W-eVU">
-                                <rect key="frame" x="20" y="44" width="374" height="75"/>
+                                <rect key="frame" x="20" y="94" width="374" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="3gZ-wJ-2f1"/>
                                 </constraints>
@@ -180,7 +180,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6K4-E5-wYi">
-                                <rect key="frame" x="20" y="131" width="374" height="50"/>
+                                <rect key="frame" x="20" y="181" width="374" height="50"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GJ7-SR-5yB">
                                         <rect key="frame" x="0.0" y="0.0" width="84.5" height="51"/>
@@ -224,19 +224,46 @@
                                 </constraints>
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="내역" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XML-vk-xuq">
-                                <rect key="frame" x="20" y="193" width="374" height="75"/>
+                                <rect key="frame" x="20" y="243" width="374" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Zv4-X2-MDc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIf-qL-Tci">
+                                <rect key="frame" x="350" y="44" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="6IW-Cd-m3z"/>
+                                    <constraint firstAttribute="height" constant="44" id="Alb-Ih-q99"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonClicked:" destination="ieK-ds-zsf" eventType="touchUpInside" id="hp2-T4-P8z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19G-Vx-fEz">
+                                <rect key="frame" x="20" y="44" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="XaI-4q-dD2"/>
+                                    <constraint firstAttribute="height" constant="44" id="nkj-iT-KTe"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="X"/>
+                                <connections>
+                                    <action selector="closeButtonClicked:" destination="ieK-ds-zsf" eventType="touchUpInside" id="sCa-ro-Eg6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JgA-fM-SOW"/>
                         <color key="backgroundColor" systemColor="systemBrownColor"/>
                         <constraints>
+                            <constraint firstItem="19G-Vx-fEz" firstAttribute="leading" secondItem="JgA-fM-SOW" secondAttribute="leading" constant="20" id="95A-l1-SPu"/>
+                            <constraint firstItem="19G-Vx-fEz" firstAttribute="top" secondItem="JgA-fM-SOW" secondAttribute="top" id="B70-hm-J5A"/>
                             <constraint firstItem="XML-vk-xuq" firstAttribute="trailing" secondItem="Im4-4W-eVU" secondAttribute="trailing" id="Bs0-i6-Qt5"/>
-                            <constraint firstItem="Im4-4W-eVU" firstAttribute="top" secondItem="JgA-fM-SOW" secondAttribute="top" id="CHO-vd-uR1"/>
+                            <constraint firstItem="Im4-4W-eVU" firstAttribute="top" secondItem="JgA-fM-SOW" secondAttribute="top" constant="50" id="CHO-vd-uR1"/>
+                            <constraint firstItem="JgA-fM-SOW" firstAttribute="trailing" secondItem="DIf-qL-Tci" secondAttribute="trailing" constant="20" id="Ch3-CA-2Xg"/>
                             <constraint firstItem="6K4-E5-wYi" firstAttribute="trailing" secondItem="Im4-4W-eVU" secondAttribute="trailing" id="DHi-Oh-E8q"/>
                             <constraint firstItem="JgA-fM-SOW" firstAttribute="trailing" secondItem="Im4-4W-eVU" secondAttribute="trailing" constant="20" id="MYz-kR-pig"/>
                             <constraint firstItem="6K4-E5-wYi" firstAttribute="top" secondItem="Im4-4W-eVU" secondAttribute="bottom" constant="12" id="Rbt-Ip-rw4"/>
@@ -244,6 +271,7 @@
                             <constraint firstItem="XML-vk-xuq" firstAttribute="leading" secondItem="Im4-4W-eVU" secondAttribute="leading" id="bV5-W5-iJN"/>
                             <constraint firstItem="Im4-4W-eVU" firstAttribute="leading" secondItem="JgA-fM-SOW" secondAttribute="leading" constant="20" id="ehe-IH-Lqr"/>
                             <constraint firstItem="XML-vk-xuq" firstAttribute="top" secondItem="6K4-E5-wYi" secondAttribute="bottom" constant="12" id="p8B-3D-fr5"/>
+                            <constraint firstItem="DIf-qL-Tci" firstAttribute="top" secondItem="JgA-fM-SOW" secondAttribute="top" id="zuK-kZ-8yP"/>
                         </constraints>
                     </view>
                     <connections>
@@ -468,7 +496,7 @@
     </scenes>
     <resources>
         <image name="baggage" width="512" height="512"/>
-        <image name="clothes" width="512" height="512"/>
+        <image name="beach" width="512" height="512"/>
         <image name="credit-card" width="512" height="512"/>
         <image name="diet" width="512" height="512"/>
         <image name="education (1)" width="512" height="512"/>

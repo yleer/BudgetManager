@@ -7,23 +7,38 @@
 
 import UIKit
 
-class CalendarViewController: UIViewController {
 
+class CalendarViewController: UIViewController {
+//https://github.com/annalizhaz/ChartsForSwiftBasic
+ 
+    @IBOutlet weak var expenseTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        expenseTableView.delegate = self
+        expenseTableView.dataSource = self
+        
+        let nibName = UINib(nibName: "ExpenseTableViewCell", bundle: nil)
+        expenseTableView.register(nibName, forCellReuseIdentifier: "ExpenseTableViewCell")
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension CalendarViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        10
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseTableViewCell", for: indexPath) as? ExpenseTableViewCell else { return UITableViewCell() }
+        
+        cell.contentLabel.text = "ASdf"
+        
+                
+        return cell
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        80
+    }
+    
 }

@@ -6,18 +6,21 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AddExpenseViewController: UIViewController{
 
     
     var selectedCategotyIndex: Int?
-    
+    var dateToAdd: String?
     @IBOutlet weak var expenseSegment: UISegmentedControl!
     @IBOutlet weak var paymentSegment: UISegmentedControl!
+//    let localRealm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print(dateToAdd)
     }
 
     
@@ -49,6 +52,17 @@ class AddExpenseViewController: UIViewController{
        present(alertVC, animated: true, completion: nil)
     }
     
+    @IBAction func closeButtonClicked(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+    
+    @IBAction func saveButtonClicked(_ sender: UIButton) {
+//        let task = BudgetModel(usedDate: <#T##Date#>, category: <#T##String#>, content: <#T##String#>, payment: <#T##String#>, income: <#T##Int?#>, spending: <#T##Int?#>)
+//        try! localRealm.write {
+//            localRealm.add(task)
+//        }
+        
+    }
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         // MARK: 여기 값으로 segment 컨트롤.

@@ -6,18 +6,16 @@
 //
 
 import UIKit
+import RealmSwift
 import FSCalendar
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var historyCollectionView: UICollectionView!
     @IBOutlet weak var topCalendar: FSCalendar!
-    var selectedDate: Date = Date(){
-        didSet{
-            print(selectedDate)
-        }
-    }
+    var selectedDate: String = ""
     @IBOutlet weak var addButton: UIButton!
+    let localRealm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +24,12 @@ class ViewController: UIViewController {
         addButton.setTitle("", for: .normal)
         addButton.layer.cornerRadius = 15
         addButton.backgroundColor = .green
+        
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        selectedDate = dateFormatter.string(from: today)
     }
     
     func fsCalendarConfigure() {
@@ -50,9 +54,13 @@ class ViewController: UIViewController {
     }
 
     @IBAction func addButtonClicked(_ sender: UIButton) {
-        print("clicked")
+        guard let vc =  self.storyboard?.instantiateViewController(withIdentifier: "AddExpenseViewController") as?  AddExpenseViewController else { return }
+        
+        vc.modalPresentationStyle = .fullScreen
+        print(selectedDate)
+        vc.dateToAdd = selectedDate
+        present(vc, animated: true, completion: nil)
     }
-    
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -96,16 +104,52 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             let size = CGSize(width: width, height: width)
             return size
         }
-    
-    
-    
 }
 
 extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        selectedDate = date
-//        print(dateToCurrentLocation(date: date))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        selectedDate = dateFormatter.string(from: date)
     }
     
+}
+
+extension Date {
+    
+    func toString(dateFormat format: String ) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.locale = Locale.current
+//        dateFormatter.date(from: <#T##String#>)
+        return dateFormatter.string(from: self)
+    }
+    func a () {
+        
+        
+    }
+    
+    func toDate(dateFormat format: String) -> Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.locale = Locale.current
+        
+        return dateFormatter.date(from: dateFormatter.string(from: self))!
+    }
+    
+    func toStringKST( dateFormat format: String ) -> String {
+        return self.toString(dateFormat: format)
+    }
+    
+    func toStringUTC( dateFormat format: String ) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        return dateFormatter.string(from: self)
+    }
 }
