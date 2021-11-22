@@ -275,8 +275,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="contentTextField" destination="XML-vk-xuq" id="ekR-hE-j33"/>
                         <outlet property="expenseSegment" destination="GJ7-SR-5yB" id="tLb-tl-IIl"/>
                         <outlet property="paymentSegment" destination="1fL-LP-59R" id="tNv-iF-HoK"/>
+                        <outlet property="priceTextField" destination="Im4-4W-eVU" id="t06-wd-olr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rq-se-yxQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

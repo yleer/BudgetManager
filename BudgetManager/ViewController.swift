@@ -16,6 +16,27 @@ class ViewController: UIViewController {
     var selectedDate: String = ""
     @IBOutlet weak var addButton: UIButton!
     let localRealm = try! Realm()
+    var tasks: Results<BudgetModel>!
+    var filterdTasks: Results<BudgetModel>!{
+        didSet{
+            historyCollectionView.reloadData()
+            print(filterdTasks.count)
+        }
+    }
+        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+    
+        selectedDate = dateFormatter.string(from: today)
+        tasks = localRealm.objects(BudgetModel.self)
+        filterdTasks = tasks.where {
+            $0.usedDate == selectedDate
+        }
+        historyCollectionView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +45,9 @@ class ViewController: UIViewController {
         addButton.setTitle("", for: .normal)
         addButton.layer.cornerRadius = 15
         addButton.backgroundColor = .green
-        
-        let today = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        selectedDate = dateFormatter.string(from: today)
     }
+    
+    
     
     func fsCalendarConfigure() {
         topCalendar.appearance.borderRadius = 1
@@ -42,15 +59,8 @@ class ViewController: UIViewController {
         topCalendar.appearance.headerDateFormat = "YYYY년 M월"
         topCalendar.locale = Locale(identifier: "ko_KR")
         topCalendar.scope = .week
-    }
-    
-    func dateToCurrentLocation(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateFormatter.timeZone = TimeZone(abbreviation: "KST")
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        
-        return dateFormatter.string(from: date)
+//        topCalendar.scrollEnabled = false
+//        topCalendar.pagingEnabled = false
     }
 
     @IBAction func addButtonClicked(_ sender: UIButton) {
@@ -69,18 +79,25 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         print("dfsg")
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return filterdTasks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identfier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell()}
         
+        let item = filterdTasks[indexPath.item]
         
-        cell.priceLabel.text = "100000"
-        cell.contentLabel.text = "강아지 삼"
+        if let spending =  item.spending {
+            cell.priceLabel.text = String(spending)
+        }else{
+            cell.priceLabel.text = String(item.income!)
+        }
+        
+        
+        cell.contentLabel.text = item.content
+        
         cell.backgroundColor = .gray
         cell.layer.cornerRadius = 15
-//        cell.remainingHistoryLabel.t
         
         return cell
     }
@@ -114,6 +131,10 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         selectedDate = dateFormatter.string(from: date)
+        
+        filterdTasks = tasks.where {
+            $0.usedDate == selectedDate
+        }
     }
     
 }

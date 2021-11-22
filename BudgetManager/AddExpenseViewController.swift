@@ -10,12 +10,14 @@ import RealmSwift
 
 class AddExpenseViewController: UIViewController{
 
+    @IBOutlet weak var priceTextField: UITextField!
+    @IBOutlet weak var contentTextField: UITextField!
     
     var selectedCategotyIndex: Int?
     var dateToAdd: String?
     @IBOutlet weak var expenseSegment: UISegmentedControl!
     @IBOutlet weak var paymentSegment: UISegmentedControl!
-//    let localRealm = try! Realm()
+    let localRealm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,19 +58,45 @@ class AddExpenseViewController: UIViewController{
         dismiss(animated: true)
     }
     
+    // MARK: UX 생각좀 해야될듯
     @IBAction func saveButtonClicked(_ sender: UIButton) {
-//        let task = BudgetModel(usedDate: <#T##Date#>, category: <#T##String#>, content: <#T##String#>, payment: <#T##String#>, income: <#T##Int?#>, spending: <#T##Int?#>)
-//        try! localRealm.write {
-//            localRealm.add(task)
-//        }
-        
+        if let selectIndex = selectedCategotyIndex,
+        let catogry = SpendingCategory(rawValue: selectIndex),
+        let date = dateToAdd,
+        let prcieString = priceTextField.text,
+        let price = Int(prcieString),
+        let content = contentTextField.text
+        {
+            var  payment = ""
+            if paymentSegment.selectedSegmentIndex == 0 {
+                payment = PaymentMethod.cash.rawValue
+            }else{
+                payment = PaymentMethod.card.rawValue
+            }
+            
+            if expenseSegment.selectedSegmentIndex == 0 {
+                let task = BudgetModel(usedDate: date, category: catogry.rawValue, content: content, payment: payment, income: nil, spending: price)
+                try! localRealm.write {
+                    localRealm.add(task)
+                }
+            }else{
+                let task = BudgetModel(usedDate: date, category: catogry.rawValue, content: content, payment: payment, income: price, spending: nil)
+                try! localRealm.write {
+                    localRealm.add(task)
+                }
+            }
+            
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         // MARK: 여기 값으로 segment 컨트롤.
         print(sender.selectedSegmentIndex)
     }
-    
-    
-    
+}
+
+enum PaymentMethod : String {
+    case card
+    case cash
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class CategoryPopUpViewController: UIViewController {
 
@@ -27,4 +28,18 @@ class CategoryPopUpViewController: UIViewController {
     @IBAction func touchOutside(_ sender: UIButton) {
         dismiss(animated: false, completion: nil)
     }
+}
+
+
+enum SpendingCategory : Int {
+    case food
+    case education
+    case grocery
+    case cloth
+    case medicine
+    case transportation
+    case leisure
+    case lifeStyle
+    case trip
+    case etc    
 }

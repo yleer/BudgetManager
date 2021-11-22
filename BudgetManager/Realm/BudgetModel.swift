@@ -11,13 +11,13 @@ import RealmSwift
 class BudgetModel: Object {
     
     @Persisted var usedDate : String
-    @Persisted var category: String
+    @Persisted var category: Int
     @Persisted var content: String
     @Persisted var payment: String
     @Persisted var income: Int?
     @Persisted var spending: Int?
     
-    convenience init(usedDate: String, category: String, content: String, payment: String, income: Int?, spending: Int?) {
+    convenience init(usedDate: String, category: Int, content: String, payment: String, income: Int?, spending: Int?) {
         self.init()
         self.usedDate = usedDate
         self.content = content
