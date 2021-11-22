@@ -16,11 +16,38 @@ class ViewController: UIViewController {
     var selectedDate: String = ""
     @IBOutlet weak var addButton: UIButton!
     let localRealm = try! Realm()
+    @IBOutlet weak var todayTotalSpendingLabel: UILabel!
+    @IBOutlet weak var remainingMoneyLabel: UILabel!
     var tasks: Results<BudgetModel>!
+    
     var filterdTasks: Results<BudgetModel>!{
         didSet{
+            
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            let price = 12345678
+            let result = numberFormatter.string(for: price)!
+
+            
+            var spentMoney = 0
+            for filterdTask in filterdTasks{
+                if let spending = filterdTask.spending{
+                    spentMoney = spentMoney + spending
+                }
+            }
+            todayTotalSpendingLabel.text = "오늘 쓴 금액 : \(numberFormatter.string(for: spentMoney)!)"
+            
+            var remainingMoney = 0
+            
+            for allTask in tasks{
+                if let income = allTask.income{
+                    remainingMoney = remainingMoney + income
+                }
+            }
+            
+            remainingMoneyLabel.text = "남은 금액 : \(numberFormatter.string(for: remainingMoney)!)"
             historyCollectionView.reloadData()
-            print(filterdTasks.count)
+            
         }
     }
         
@@ -50,18 +77,41 @@ class ViewController: UIViewController {
     
     
     func fsCalendarConfigure() {
-        topCalendar.appearance.borderRadius = 1
+        topCalendar.appearance.borderRadius = 3
         topCalendar.appearance.headerMinimumDissolvedAlpha = 0.0
 
-        topCalendar.weekdayHeight = 30
+        
+        topCalendar.delegate = self
+//        topCalendar.calendarHeaderView.setScrollOffset(0, animated: false)
+        topCalendar.backgroundColor = UIColor(red: 242, green: 231, blue: 20, alpha: 0.5)
+        
+        
+//        topCalendar.appearance.borderDefaultColor = .black
 
-        topCalendar.rowHeight = 50
+//        topCalendar.appearance.headerTitleColor = UIColor(red: 65, green: 68, blue: 88, alpha: 0.45)
+//        topCalendar.appearance.selectionColor = UIColor(red: 65, green: 68, blue: 88, alpha: 0.45)
+        
+        
         topCalendar.appearance.headerDateFormat = "YYYY년 M월"
         topCalendar.locale = Locale(identifier: "ko_KR")
         topCalendar.scope = .week
-//        topCalendar.scrollEnabled = false
-//        topCalendar.pagingEnabled = false
+        
+        topCalendar.headerHeight = 30
+        topCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 22) // 해더 글자
+        topCalendar.appearance.titleFont = UIFont.systemFont(ofSize: 17) // 날짜
+
     }
+    var events : [Date] = []
+    func setUpEvents() {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy-MM-dd"
+        let xmas = formatter.date(from: "2020-12-25")
+        let sampledate = formatter.date(from: "2020-08-22")
+        events = [xmas!, sampledate!]
+    }
+
+    
 
     @IBAction func addButtonClicked(_ sender: UIButton) {
         guard let vc =  self.storyboard?.instantiateViewController(withIdentifier: "AddExpenseViewController") as?  AddExpenseViewController else { return }
@@ -136,7 +186,20 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
             $0.usedDate == selectedDate
         }
     }
-    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        let a  = dateFormatter.string(from: date)
+        
+        if self.events.contains(date) {
+            print("asd")
+            return 1
+        }
+        else {
+            return 0
+        }
+    }
 }
 
 extension Date {
@@ -172,5 +235,33 @@ extension Date {
         dateFormatter.dateFormat = format
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         return dateFormatter.string(from: self)
+    }
+}
+
+extension UIColor {
+    public convenience init?(hex: String) {
+        let r, g, b, a: CGFloat
+
+        if hex.hasPrefix("#") {
+            let start = hex.index(hex.startIndex, offsetBy: 1)
+            let hexColor = String(hex[start...])
+
+            if hexColor.count == 8 {
+                let scanner = Scanner(string: hexColor)
+                var hexNumber: UInt64 = 0
+
+                if scanner.scanHexInt64(&hexNumber) {
+                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                    a = CGFloat(hexNumber & 0x000000ff) / 255
+
+                    self.init(red: r, green: g, blue: b, alpha: a)
+                    return
+                }
+            }
+        }
+
+        return nil
     }
 }

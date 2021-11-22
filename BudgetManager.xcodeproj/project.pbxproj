@@ -31,6 +31,7 @@
 		88B3BAD827463F2B00ECB3EB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 88B3BAD727463F2B00ECB3EB /* RealmSwift */; };
 		88B3BADA27466A0900ECB3EB /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAD927466A0900ECB3EB /* MainCollectionViewCell.swift */; };
 		88C078D22747D0D800CF0900 /* CategoryPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C078D12747D0D800CF0900 /* CategoryPopUpViewController.swift */; };
+		88C61914274B5ED500724AA0 /* PRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C61913274B5ED400724AA0 /* PRViewController.swift */; };
 		8C287450FC9309BF3CB6F3C8 /* Pods_BudgetManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C882AC5F3FC5B2B1A42FB6 /* Pods_BudgetManager.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		88B3BAD927466A0900ECB3EB /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		88C078D12747D0D800CF0900 /* CategoryPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopUpViewController.swift; sourceTree = "<group>"; };
+		88C61913274B5ED400724AA0 /* PRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRViewController.swift; sourceTree = "<group>"; };
 		A9C882AC5F3FC5B2B1A42FB6 /* Pods_BudgetManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BudgetManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBB33D1317206205ED1DA2C3 /* Pods-BudgetManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetManager.debug.xcconfig"; path = "Target Support Files/Pods-BudgetManager/Pods-BudgetManager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,7 +86,6 @@
 				DBB33D1317206205ED1DA2C3 /* Pods-BudgetManager.debug.xcconfig */,
 				488EC48CFC7F2FA8FC29D526 /* Pods-BudgetManager.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -136,6 +137,7 @@
 				889FC8D52744DCB200F16ADF /* Info.plist */,
 				88A091332748F46900DE4E95 /* ExpenseTableViewCell.swift */,
 				88A091342748F46900DE4E95 /* ExpenseTableViewCell.xib */,
+				88C61913274B5ED400724AA0 /* PRViewController.swift */,
 			);
 			path = BudgetManager;
 			sourceTree = "<group>";
@@ -211,11 +213,11 @@
 			);
 			mainGroup = 889FC8BB2744DCAF00F16ADF;
 			packageReferences = (
-				88B3BACB27463EE700ECB3EB /* XCRemoteSwiftPackageReference "FSCalendar.git" */,
+				88B3BACB27463EE700ECB3EB /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				88B3BACE27463EF500ECB3EB /* XCRemoteSwiftPackageReference "Alamofire" */,
 				88B3BAD127463F0200ECB3EB /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				88B3BAD427463F2B00ECB3EB /* XCRemoteSwiftPackageReference "realm-cocoa" */,
-				8885D4DF27489C1800A5EC57 /* XCRemoteSwiftPackageReference "Charts.git" */,
+				8885D4DF27489C1800A5EC57 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 889FC8C52744DCAF00F16ADF /* Products */;
 			projectDirPath = "";
@@ -292,6 +294,7 @@
 			files = (
 				88A091352748F46A00DE4E95 /* ExpenseTableViewCell.swift in Sources */,
 				88B3BAC42746380A00ECB3EB /* CalendarViewController.swift in Sources */,
+				88C61914274B5ED500724AA0 /* PRViewController.swift in Sources */,
 				889FC8CC2744DCAF00F16ADF /* ViewController.swift in Sources */,
 				889FC8C82744DCAF00F16ADF /* AppDelegate.swift in Sources */,
 				88B3BADA27466A0900ECB3EB /* MainCollectionViewCell.swift in Sources */,
@@ -458,6 +461,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -487,6 +491,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -524,7 +529,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8885D4DF27489C1800A5EC57 /* XCRemoteSwiftPackageReference "Charts.git" */ = {
+		8885D4DF27489C1800A5EC57 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
 			requirement = {
@@ -532,7 +537,7 @@
 				kind = branch;
 			};
 		};
-		88B3BACB27463EE700ECB3EB /* XCRemoteSwiftPackageReference "FSCalendar.git" */ = {
+		88B3BACB27463EE700ECB3EB /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
 			requirement = {
@@ -569,12 +574,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		8885D4E027489C1800A5EC57 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8885D4DF27489C1800A5EC57 /* XCRemoteSwiftPackageReference "Charts.git" */;
+			package = 8885D4DF27489C1800A5EC57 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
 		};
 		88B3BACC27463EE700ECB3EB /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 88B3BACB27463EE700ECB3EB /* XCRemoteSwiftPackageReference "FSCalendar.git" */;
+			package = 88B3BACB27463EE700ECB3EB /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
 		};
 		88B3BACF27463EF500ECB3EB /* Alamofire */ = {

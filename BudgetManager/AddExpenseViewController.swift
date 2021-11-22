@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import PhotosUI
 import RealmSwift
 
 class AddExpenseViewController: UIViewController{
 
     @IBOutlet weak var priceTextField: UITextField!
+    @IBOutlet weak var selectedImage: UIImageView!
     @IBOutlet weak var contentTextField: UITextField!
     
     var selectedCategotyIndex: Int?
@@ -54,12 +56,12 @@ class AddExpenseViewController: UIViewController{
        present(alertVC, animated: true, completion: nil)
     }
     
-    @IBAction func closeButtonClicked(_ sender: UIButton) {
+    @IBAction func cancelButtonCLicked(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
     
     // MARK: UX 생각좀 해야될듯
-    @IBAction func saveButtonClicked(_ sender: UIButton) {
+    @IBAction func saveButtonClicked(_ sender: UIBarButtonItem) {
         if let selectIndex = selectedCategotyIndex,
         let catogry = SpendingCategory(rawValue: selectIndex),
         let date = dateToAdd,
@@ -90,11 +92,47 @@ class AddExpenseViewController: UIViewController{
         }
     }
     
+    
+ 
+    @IBAction func addImageButtonClicked(_ sender: UIBarButtonItem) {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        let pickerView = PHPickerViewController(configuration: configuration)
+        pickerView.delegate = self
+        present(pickerView, animated: true, completion: nil)
+        
+        
+    }
+    
+    
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         // MARK: 여기 값으로 segment 컨트롤.
         print(sender.selectedSegmentIndex)
     }
 }
+
+extension AddExpenseViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        let itemProvider = results.first?.itemProvider
+        
+        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            
+            itemProvider.loadObject(ofClass: UIImage.self) {(image, error) in
+                DispatchQueue.main.async {
+                    self.selectedImage.image = image as? UIImage
+                }
+            }
+        }
+        else {
+        }
+
+        
+        selectedImage.image
+        picker.dismiss(animated: true, completion: nil)
+        print("ADf")
+    }
+}
+
 
 enum PaymentMethod : String {
     case card
