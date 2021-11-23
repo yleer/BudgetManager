@@ -68,6 +68,8 @@ Report Sb 기능 구현 | - | 2H | 2H
 Setting Sb 기능 구현  | - | 2H30M | - 
 이터레이션 진행 평가 (Readme 정리)  | - | 1H30M | - 
 
+이터레이샨 3 확실히 기능을 먼저 구현하려 하니까, 개발 속도가 빨라짐. 각 SB 기준으로 할일 단위를 정하는 것이 앞으로 좋을거 같음.
+11/23일 Main SB, Calendar Sb 구현했으니 24일 까지 Report Sb, Setting SB 구현 계획.
 
 
 
