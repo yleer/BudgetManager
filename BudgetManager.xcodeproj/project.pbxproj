@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		884BF004274CA42500FA3504 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884BF003274CA42500FA3504 /* DetailViewController.swift */; };
 		884FAAB6274A6D4B009F4A6A /* BudgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884FAAB5274A6D4B009F4A6A /* BudgetModel.swift */; };
 		8885D4E127489C1800A5EC57 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 8885D4E027489C1800A5EC57 /* Charts */; };
 		889FC8C82744DCAF00F16ADF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889FC8C72744DCAF00F16ADF /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		488EC48CFC7F2FA8FC29D526 /* Pods-BudgetManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetManager.release.xcconfig"; path = "Target Support Files/Pods-BudgetManager/Pods-BudgetManager.release.xcconfig"; sourceTree = "<group>"; };
+		884BF003274CA42500FA3504 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		884FAAB5274A6D4B009F4A6A /* BudgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetModel.swift; sourceTree = "<group>"; };
 		889FC8C42744DCAF00F16ADF /* BudgetManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		889FC8C72744DCAF00F16ADF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				88A091332748F46900DE4E95 /* ExpenseTableViewCell.swift */,
 				88A091342748F46900DE4E95 /* ExpenseTableViewCell.xib */,
 				88C61913274B5ED400724AA0 /* PRViewController.swift */,
+				884BF003274CA42500FA3504 /* DetailViewController.swift */,
 			);
 			path = BudgetManager;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				884BF004274CA42500FA3504 /* DetailViewController.swift in Sources */,
 				88A091352748F46A00DE4E95 /* ExpenseTableViewCell.swift in Sources */,
 				88B3BAC42746380A00ECB3EB /* CalendarViewController.swift in Sources */,
 				88C61914274B5ED500724AA0 /* PRViewController.swift in Sources */,

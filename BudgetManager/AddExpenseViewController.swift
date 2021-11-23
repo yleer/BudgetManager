@@ -15,6 +15,7 @@ class AddExpenseViewController: UIViewController{
     @IBOutlet weak var selectedImage: UIImageView!
     @IBOutlet weak var contentTextField: UITextField!
     
+    @IBOutlet weak var categoryButton: UIButton!
     var selectedCategotyIndex: Int?
     var dateToAdd: String?
     @IBOutlet weak var expenseSegment: UISegmentedControl!
@@ -24,20 +25,24 @@ class AddExpenseViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(dateToAdd)
+//        print(dateToAdd)
     }
 
-    
+    let category = ["식료", "교육", "장보기", "의류", "의료", "교통", "레져", "여가", "여행", "기타" ]
     @IBAction func categoryButtonClicked(_ sender: UIButton) {
         guard let vc =  self.storyboard?.instantiateViewController(withIdentifier: "CategoryPopUpViewController") as?  CategoryPopUpViewController else { return }
         
         
         vc.buttonActionHandler = {
             self.selectedCategotyIndex = vc.selectedButton
+            
+            
+            self.categoryButton.setTitle(self.category[self.selectedCategotyIndex!], for: .normal)
         }
         
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: false, completion: nil)
+        
     }
     
     @IBAction func reciptButtonClicked(_ sender: UIButton) {
@@ -63,12 +68,13 @@ class AddExpenseViewController: UIViewController{
     // MARK: UX 생각좀 해야될듯
     @IBAction func saveButtonClicked(_ sender: UIBarButtonItem) {
         if let selectIndex = selectedCategotyIndex,
-        let catogry = SpendingCategory(rawValue: selectIndex),
         let date = dateToAdd,
         let prcieString = priceTextField.text,
         let price = Int(prcieString),
         let content = contentTextField.text
         {
+            let catogry = category[selectIndex]
+            
             var  payment = ""
             if paymentSegment.selectedSegmentIndex == 0 {
                 payment = PaymentMethod.cash.rawValue
@@ -77,12 +83,12 @@ class AddExpenseViewController: UIViewController{
             }
             
             if expenseSegment.selectedSegmentIndex == 0 {
-                let task = BudgetModel(usedDate: date, category: catogry.rawValue, content: content, payment: payment, income: nil, spending: price)
+                let task = BudgetModel(usedDate: date, category: catogry, content: content, payment: payment, income: nil, spending: price)
                 try! localRealm.write {
                     localRealm.add(task)
                 }
             }else{
-                let task = BudgetModel(usedDate: date, category: catogry.rawValue, content: content, payment: payment, income: price, spending: nil)
+                let task = BudgetModel(usedDate: date, category: catogry, content: content, payment: payment, income: price, spending: nil)
                 try! localRealm.write {
                     localRealm.add(task)
                 }
@@ -123,11 +129,6 @@ extension AddExpenseViewController: PHPickerViewControllerDelegate {
                 }
             }
         }
-        else {
-        }
-
-        
-        selectedImage.image
         picker.dismiss(animated: true, completion: nil)
         print("ADf")
     }

@@ -38,13 +38,17 @@ class ViewController: UIViewController {
             todayTotalSpendingLabel.text = "오늘 쓴 금액 : \(numberFormatter.string(for: spentMoney)!)"
             
             var remainingMoney = 0
-            
+            var totalSpent = 0
             for allTask in tasks{
                 if let income = allTask.income{
                     remainingMoney = remainingMoney + income
                 }
+                if let spent = allTask.spending{
+                    totalSpent = totalSpent + spent
+                }
             }
             
+            remainingMoney = remainingMoney - totalSpent
             remainingMoneyLabel.text = "남은 금액 : \(numberFormatter.string(for: remainingMoney)!)"
             historyCollectionView.reloadData()
             
@@ -63,6 +67,7 @@ class ViewController: UIViewController {
             $0.usedDate == selectedDate
         }
         historyCollectionView.reloadData()
+        print(localRealm.configuration.fileURL)
     }
     
     override func viewDidLoad() {
@@ -82,6 +87,7 @@ class ViewController: UIViewController {
 
         
         topCalendar.delegate = self
+        topCalendar.dataSource = self
 //        topCalendar.calendarHeaderView.setScrollOffset(0, animated: false)
         topCalendar.backgroundColor = UIColor(red: 242, green: 231, blue: 20, alpha: 0.5)
         
@@ -125,8 +131,28 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("dfsg")
+        
+        let item = filterdTasks[indexPath.item]
+        
+        let sb = UIStoryboard(name: "CalendarSB", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+        vc.task = item
+        vc.dateTmp = item.usedDate
+        vc.contentTmp = item.content
+
+        if let income = item.income{
+            // 수입.
+            vc.incomeTmp = "\(income)원"
+
+        }else{
+            // 지출.
+            vc.spendingTmp = "\(item.spending!)원"
+            vc.categoryTitleTmp = item.category
+        }
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filterdTasks.count
