@@ -43,13 +43,6 @@
                                     <constraint firstAttribute="height" constant="50" id="CwM-9u-grs"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4K-5z-bW1">
-                                <rect key="frame" x="20" y="217" width="374" height="20"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="8hI-4b-kFr"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4I-zf-3t9" customClass="PieChartView" customModule="Charts">
                                 <rect key="frame" x="72" y="526" width="270" height="270"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -69,22 +62,42 @@
                                     <action selector="monthButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="lle-KS-Gno"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="e7c-5d-Kx8">
+                                <rect key="frame" x="56" y="217" width="302" height="4"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4GF-1y-2tk">
+                                <rect key="frame" x="20" y="193" width="20" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jtq-OS-jOf">
+                                <rect key="frame" x="339" y="193" width="55" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBrownColor"/>
                         <constraints>
+                            <constraint firstItem="e7c-5d-Kx8" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="34r-DD-RQl"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rS1-Og-krg" secondAttribute="trailing" constant="20" id="4qc-Ks-eGr"/>
                             <constraint firstItem="Qaa-2M-KIu" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="6R2-t5-26y"/>
+                            <constraint firstItem="4GF-1y-2tk" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="AE7-YH-PPo"/>
+                            <constraint firstItem="e7c-5d-Kx8" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.729469" id="BRI-lh-UDG"/>
+                            <constraint firstItem="Jtq-OS-jOf" firstAttribute="top" secondItem="4GF-1y-2tk" secondAttribute="top" id="DhT-Zm-hwe"/>
                             <constraint firstItem="rS1-Og-krg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="F6d-QP-eln"/>
                             <constraint firstItem="0HT-vl-CwN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="FTg-wS-Xhb"/>
-                            <constraint firstItem="H4K-5z-bW1" firstAttribute="top" secondItem="rS1-Og-krg" secondAttribute="bottom" constant="20" id="I5p-l2-Dir"/>
-                            <constraint firstItem="0HT-vl-CwN" firstAttribute="top" secondItem="H4K-5z-bW1" secondAttribute="bottom" constant="20" id="LGW-Ot-VAz"/>
+                            <constraint firstItem="0HT-vl-CwN" firstAttribute="top" secondItem="e7c-5d-Kx8" secondAttribute="bottom" constant="36" id="KRk-18-Eee"/>
+                            <constraint firstItem="e7c-5d-Kx8" firstAttribute="leading" secondItem="4GF-1y-2tk" secondAttribute="trailing" constant="16" id="QEV-GU-EZr"/>
                             <constraint firstItem="rS1-Og-krg" firstAttribute="top" secondItem="Qaa-2M-KIu" secondAttribute="bottom" constant="20" id="QTa-LG-YUU"/>
                             <constraint firstItem="U4I-zf-3t9" firstAttribute="top" secondItem="0HT-vl-CwN" secondAttribute="bottom" constant="30" id="TdE-6N-NlS"/>
-                            <constraint firstItem="H4K-5z-bW1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="bey-nb-Xyd"/>
+                            <constraint firstItem="e7c-5d-Kx8" firstAttribute="top" secondItem="rS1-Og-krg" secondAttribute="bottom" constant="20" id="UYS-qk-8Wj"/>
+                            <constraint firstItem="4GF-1y-2tk" firstAttribute="top" secondItem="rS1-Og-krg" secondAttribute="bottom" constant="-4" id="Ytd-Ie-Odv"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0HT-vl-CwN" secondAttribute="trailing" constant="40" id="cdB-T6-MPD"/>
                             <constraint firstItem="U4I-zf-3t9" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.652174" id="cvj-1O-Cx5"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="H4K-5z-bW1" secondAttribute="trailing" constant="20" id="mxT-2z-oxl"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Jtq-OS-jOf" secondAttribute="trailing" constant="20" id="pWE-0O-RgC"/>
                             <constraint firstItem="Qaa-2M-KIu" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="8" id="q3O-vs-0aA"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="U4I-zf-3t9" secondAttribute="trailing" constant="72" id="rn1-Ov-v1Q"/>
                             <constraint firstItem="0HT-vl-CwN" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.266741" id="xoI-gY-bpX"/>
@@ -96,6 +109,8 @@
                         <outlet property="barChart" destination="0HT-vl-CwN" id="xxl-V3-T7I"/>
                         <outlet property="monthButton" destination="Qaa-2M-KIu" id="D4Z-x0-ILl"/>
                         <outlet property="pieChart" destination="U4I-zf-3t9" id="6ve-XN-1uk"/>
+                        <outlet property="totalIncome" destination="Jtq-OS-jOf" id="C5e-dh-C4U"/>
+                        <outlet property="usedPercentage" destination="e7c-5d-Kx8" id="lF8-8P-lAb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -172,9 +187,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

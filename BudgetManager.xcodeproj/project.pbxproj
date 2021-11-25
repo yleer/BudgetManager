@@ -23,7 +23,6 @@
 		88B3BAC1274637CC00ECB3EB /* SettingSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BAC0274637CC00ECB3EB /* SettingSB.storyboard */; };
 		88B3BAC42746380A00ECB3EB /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAC32746380A00ECB3EB /* CalendarViewController.swift */; };
 		88B3BAC62746382100ECB3EB /* MonthlyReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAC52746382100ECB3EB /* MonthlyReportViewController.swift */; };
-		88B3BAC82746384300ECB3EB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAC72746384300ECB3EB /* SettingViewController.swift */; };
 		88B3BACA27463D9F00ECB3EB /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */; };
 		88B3BACD27463EE700ECB3EB /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 88B3BACC27463EE700ECB3EB /* FSCalendar */; };
 		88B3BAD027463EF500ECB3EB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 88B3BACF27463EF500ECB3EB /* Alamofire */; };
@@ -34,6 +33,8 @@
 		88C078D22747D0D800CF0900 /* CategoryPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C078D12747D0D800CF0900 /* CategoryPopUpViewController.swift */; };
 		88C61914274B5ED500724AA0 /* PRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C61913274B5ED400724AA0 /* PRViewController.swift */; };
 		88CF44EF274DF31B00F67A06 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CF44EE274DF31A00F67A06 /* DatePickerViewController.swift */; };
+		88CF44F1274E4DAC00F67A06 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CF44F0274E4DAC00F67A06 /* SettingTableViewController.swift */; };
+		88CF44F3274E512800F67A06 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CF44F2274E512800F67A06 /* SearchViewController.swift */; };
 		8C287450FC9309BF3CB6F3C8 /* Pods_BudgetManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C882AC5F3FC5B2B1A42FB6 /* Pods_BudgetManager.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,12 +57,13 @@
 		88B3BAC0274637CC00ECB3EB /* SettingSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingSB.storyboard; sourceTree = "<group>"; };
 		88B3BAC32746380A00ECB3EB /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		88B3BAC52746382100ECB3EB /* MonthlyReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyReportViewController.swift; sourceTree = "<group>"; };
-		88B3BAC72746384300ECB3EB /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		88B3BAD927466A0900ECB3EB /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		88C078D12747D0D800CF0900 /* CategoryPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopUpViewController.swift; sourceTree = "<group>"; };
 		88C61913274B5ED400724AA0 /* PRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRViewController.swift; sourceTree = "<group>"; };
 		88CF44EE274DF31A00F67A06 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		88CF44F0274E4DAC00F67A06 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		88CF44F2274E512800F67A06 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A9C882AC5F3FC5B2B1A42FB6 /* Pods_BudgetManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BudgetManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBB33D1317206205ED1DA2C3 /* Pods-BudgetManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetManager.debug.xcconfig"; path = "Target Support Files/Pods-BudgetManager/Pods-BudgetManager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,7 +138,8 @@
 				88CF44EE274DF31A00F67A06 /* DatePickerViewController.swift */,
 				88B3BAC52746382100ECB3EB /* MonthlyReportViewController.swift */,
 				88B3BAC0274637CC00ECB3EB /* SettingSB.storyboard */,
-				88B3BAC72746384300ECB3EB /* SettingViewController.swift */,
+				88CF44F2274E512800F67A06 /* SearchViewController.swift */,
+				88CF44F0274E4DAC00F67A06 /* SettingTableViewController.swift */,
 				889FC8D02744DCB200F16ADF /* Assets.xcassets */,
 				88B3BAC2274637E700ECB3EB /* Supporting Files */,
 				889FC8D52744DCB200F16ADF /* Info.plist */,
@@ -298,6 +301,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88CF44F3274E512800F67A06 /* SearchViewController.swift in Sources */,
+				88CF44F1274E4DAC00F67A06 /* SettingTableViewController.swift in Sources */,
 				884BF004274CA42500FA3504 /* DetailViewController.swift in Sources */,
 				88A091352748F46A00DE4E95 /* ExpenseTableViewCell.swift in Sources */,
 				88CF44EF274DF31B00F67A06 /* DatePickerViewController.swift in Sources */,
@@ -310,7 +315,6 @@
 				889FC8CA2744DCAF00F16ADF /* SceneDelegate.swift in Sources */,
 				884FAAB6274A6D4B009F4A6A /* BudgetModel.swift in Sources */,
 				88C078D22747D0D800CF0900 /* CategoryPopUpViewController.swift in Sources */,
-				88B3BAC82746384300ECB3EB /* SettingViewController.swift in Sources */,
 				88B3BACA27463D9F00ECB3EB /* AddExpenseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

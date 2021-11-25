@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var remainingMoneyLabel: UILabel!
     var tasks: Results<BudgetModel>!
     
+  
     var filterdTasks: Results<BudgetModel>!{
         didSet{
             
@@ -75,8 +76,8 @@ class ViewController: UIViewController {
         fsCalendarConfigure()
         historyCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         addButton.setTitle("", for: .normal)
-        addButton.layer.cornerRadius = 15
-        addButton.backgroundColor = .green
+        addButton.layer.cornerRadius = addButton.frame.width / 2
+//        addButton.backgroundColor = .green
     }
     
     
@@ -173,7 +174,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         cell.contentLabel.text = item.content
         
         cell.backgroundColor = .gray
-        cell.layer.cornerRadius = 15
+        cell.layer.cornerRadius = cell.frame.width / 5
         
         return cell
     }

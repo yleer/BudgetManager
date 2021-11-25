@@ -15,8 +15,12 @@ class CategoryPopUpViewController: UIViewController {
     var buttonActionHandler: (() -> ())?
     var selectedButton: Int?
     
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var dismissButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        dismissButton.setTitle("", for: .normal)
+        containerView.layer.cornerRadius = containerView.frame.width / 5
     }
 
     @IBAction func buttonClicked(_ sender: UIButton) {
