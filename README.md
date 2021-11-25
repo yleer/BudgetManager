@@ -64,12 +64,23 @@ SB를 나누어 tab bar를 만들때, 새로운 SB VC에 tab bar item 추가하�
 Main Sb 기능 구현 | 11/23 | 3H | 2H 
 Calendar Sb 기능 구현 | 11/23 | 3H | 3H 
 화면 전환  | - | 2H | - 
-Report Sb 기능 구현 | - | 2H | 2H 
-Setting Sb 기능 구현  | - | 2H30M | - 
-이터레이션 진행 평가 (Readme 정리)  | - | 1H30M | - 
+Report Sb 기능 구현 | 11/24 | 2H | 5H 
+Setting Sb 기능 구현  | 11/24 | 2H30M | 1H 
+이터레이션 진행 평가 (Readme 정리)  | 11/24 | 1H30M | 1H 
 
 이터레이샨 3 확실히 기능을 먼저 구현하려 하니까, 개발 속도가 빨라짐. 각 SB 기준으로 할일 단위를 정하는 것이 앞으로 좋을거 같음.
+<br/>
 11/23일 Main SB, Calendar Sb 구현했으니 24일 까지 Report Sb, Setting SB 구현 계획.
+<br/>
+11/24 Report Sb 구현에 생각 보다 많은 시간이 들어 setting sb의 백업 복구 기능 완성 못함. 이터레이션 4의 디자인 부분 끝난 후 추가 기능으로 업데이트 할 예정.
 
 
+이터레이션 4 (어플의 디자인 구현하기)  <br/>(2021/11/25 ~ 2021/11/28) | 완료 날짜 | 예상 소요 시간 | 실제 소요 시간
+--- | --- | --- | --- 
+Main Sb 디자인| - | 3H |  -
+Calendar Sb 디자인 | - | 3H | -
+Report Sb 디자인 | - | 3H | -
+Setting Sb  디자인 | - | 3H | -
+화면 전환  | - | 2H | - 
+이터레이션 진행 평가 (Readme 정리)  | - | 1H30M | - 
 
