@@ -77,10 +77,10 @@ Setting Sb 기능 구현  | 11/24 | 2H30M | 1H
 
 이터레이션 4 (어플의 디자인 구현하기)  <br/>(2021/11/25 ~ 2021/11/28) | 완료 날짜 | 예상 소요 시간 | 실제 소요 시간
 --- | --- | --- | --- 
-Main Sb| - | 3H |  -
-Calendar Sb  | - | 3H | -
+Main Sb 디자인| - | 3H |  -
+Calendar Sb 디자인 | - | 3H | -
+Report Sb 디자인 | - | 3H | -
+Setting Sb  디자인 | - | 3H | -
 화면 전환  | - | 2H | - 
-Report Sb  | - | 3H | -
-Setting Sb   | - | 3H | -
 이터레이션 진행 평가 (Readme 정리)  | - | 1H30M | - 
 
