@@ -89,10 +89,9 @@ class ViewController: UIViewController {
         
         topCalendar.delegate = self
         topCalendar.dataSource = self
+
+
 //        topCalendar.calendarHeaderView.setScrollOffset(0, animated: false)
-        topCalendar.backgroundColor = UIColor(red: 242, green: 231, blue: 20, alpha: 0.5)
-        
-        
 //        topCalendar.appearance.borderDefaultColor = .black
 
 //        topCalendar.appearance.headerTitleColor = UIColor(red: 65, green: 68, blue: 88, alpha: 0.45)
@@ -140,18 +139,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         let sb = UIStoryboard(name: "CalendarSB", bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         vc.task = item
-        vc.dateTmp = item.usedDate
-        vc.contentTmp = item.content
-
-        if let income = item.income{
-            // 수입.
-            vc.incomeTmp = "\(income)원"
-
-        }else{
-            // 지출.
-            vc.spendingTmp = "\(item.spending!)원"
-            vc.categoryTitleTmp = item.category
-        }
+ 
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true, completion: nil)
     }
@@ -163,11 +151,56 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identfier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell()}
         
         let item = filterdTasks[indexPath.item]
-        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
         if let spending =  item.spending {
-            cell.priceLabel.text = String(spending)
+            cell.priceLabel.text = "지출"
+            let result = numberFormatter.string(for: (spending))!
+            cell.remainingHistoryLabel.text = result + "원"
+//            ["식료", "교육", "장보기", "의류", "의료", "교통", "레져", "여가", "여행", "기타" ]
+            switch item.payment{
+            case PaymentMethod.card.rawValue:
+                cell.paymentImage.image = UIImage(named: "credit-card")
+            case PaymentMethod.cash.rawValue:
+                cell.paymentImage.image = UIImage(named: "dollar")
+            default:
+                print("not good")
+            }
+            
+            
+            if item.category == "식료"{
+                cell.categoryImage.image = UIImage(named: "diet")
+            }else if item.category == "교육"{
+                cell.categoryImage.image = UIImage(named: "education (1)")
+            }else if item.category == "장보기"{
+                cell.categoryImage.image = UIImage(named: "grocery-cart")
+            }else if item.category == "의류"{
+                cell.categoryImage.image = UIImage(named: "laundry")
+            }else if item.category == "의료"{
+                cell.categoryImage.image = UIImage(named: "pills")
+            }else if item.category == "교통"{
+                cell.categoryImage.image = UIImage(named: "vehicles")
+            }else if item.category == "레져"{
+                cell.categoryImage.image = UIImage(named: "")
+            }else if item.category == "여가"{
+                cell.categoryImage.image = UIImage(named: "watching-tv")
+            }else if item.category == "여행"{
+                cell.categoryImage.image = UIImage(named: "baggage")
+            }
+            else if item.category == "기타"{
+                cell.categoryImage.image = UIImage(named: "more")
+            }
+            
+            
+            cell.categoryImage.isHidden = false
+            cell.paymentImage.isHidden = false
         }else{
-            cell.priceLabel.text = String(item.income!)
+            cell.priceLabel.text = "수입"
+            let result = numberFormatter.string(for: (item.income!))!
+            
+            cell.categoryImage.isHidden = true
+            cell.paymentImage.isHidden = true
+            cell.remainingHistoryLabel.text = result + "원"
         }
         
         

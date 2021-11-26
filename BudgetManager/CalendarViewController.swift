@@ -19,18 +19,48 @@ class CalendarViewController: UIViewController {
     let localRealm = try! Realm()
     var tasks: Results<BudgetModel>!
     var monthTasks: Results<BudgetModel>!
+//    {
+//        didSet{
+//            var query = ""
+//
+//
+//            monthTasks = tasks.where {
+//                $0.usedDate.contains(query)
+//            }
+//
+//            var spending = 0
+//            var income = 0
+//            for task in monthTasks{
+//                if let earn = task.income{
+//                    income = income + earn
+//                }else{
+//                    spending = spending + task.spending!
+//                }
+//            }
+//
+//            let numberFormatter = NumberFormatter()
+//            numberFormatter.numberStyle = .decimal
+//
+//            let incomeFormatted = numberFormatter.string(for: income)!
+//            let spendingFormatted = numberFormatter.string(for: spending)!
+//
+//            currentMonthIncome.text = "이번달 총 수익 : \(incomeFormatted)원"
+//            currentMonthSpending.text = "이번달 총 지출 : \(spendingFormatted)원"
+//        }
+//    }
     
     @IBOutlet weak var currentMonthIncome: UILabel!
     @IBOutlet weak var currentMonthSpending: UILabel!
     
     var chosenDayTasks: Results<BudgetModel>!{
         didSet{
-            print(chosenDayTasks)
+//            print(chosenDayTasks)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("ASdf")
         let today = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -47,16 +77,38 @@ class CalendarViewController: UIViewController {
         monthTasks = tasks.where {
             $0.usedDate.contains(query)
         }
+        
+        var spending = 0
+        var income = 0
+        for task in monthTasks{
+            if let earn = task.income{
+                income = income + earn
+            }else{
+                spending = spending + task.spending!
+            }
+        }
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        let incomeFormatted = numberFormatter.string(for: income)!
+        let spendingFormatted = numberFormatter.string(for: spending)!
+        
+        currentMonthIncome.text = "이번달 총 수익 : \(incomeFormatted)원"
+        currentMonthSpending.text = "이번달 총 지출 : \(spendingFormatted)원"
+        
+        
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        expenseTableView.delegate = self
-        expenseTableView.dataSource = self
-        
+
         let nibName = UINib(nibName: "ExpenseTableViewCell", bundle: nil)
         expenseTableView.register(nibName, forCellReuseIdentifier: "ExpenseTableViewCell")
+        
         configureCalendarView()
+
     }
     
     func configureCalendarView() {
@@ -65,7 +117,7 @@ class CalendarViewController: UIViewController {
 
         calendarView.delegate = self
         calendarView.dataSource = self
-        calendarView.backgroundColor = UIColor(red: 242, green: 231, blue: 20, alpha: 0.5)
+
         calendarView.appearance.headerDateFormat = "YYYY년 M월"
         calendarView.locale = Locale(identifier: "ko_KR")
 
@@ -86,14 +138,13 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         chosenDayTasks = tasks.where {
             $0.usedDate == selectedDate
         }
-        
         expenseTableView.reloadData()
-        
     }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM"
+        
         let query = dateFormatter.string(from: calendar.currentPage)
 
         monthTasks = tasks.where {
@@ -133,8 +184,45 @@ extension CalendarViewController : UITableViewDelegate, UITableViewDataSource {
         
         if let income = row.income{
             cell.priceLabel.text = "\(income)원"
+            
+            cell.categoryImage.isHidden = true
+            cell.paymentLabel.isHidden = true
         }else{
+            cell.categoryImage.isHidden = false
+            cell.paymentLabel.isHidden = false
             cell.priceLabel.text = "\(row.spending!)원"
+            
+            if row.category == "식료"{
+                cell.categoryImage.image = UIImage(named: "diet")
+            }else if row.category == "교육"{
+                cell.categoryImage.image = UIImage(named: "education (1)")
+            }else if row.category == "장보기"{
+                cell.categoryImage.image = UIImage(named: "grocery-cart")
+            }else if row.category == "의류"{
+                cell.categoryImage.image = UIImage(named: "laundry")
+            }else if row.category == "의료"{
+                cell.categoryImage.image = UIImage(named: "pills")
+            }else if row.category == "교통"{
+                cell.categoryImage.image = UIImage(named: "vehicles")
+            }else if row.category == "레져"{
+                cell.categoryImage.image = UIImage(named: "")
+            }else if row.category == "여가"{
+                cell.categoryImage.image = UIImage(named: "watching-tv")
+            }else if row.category == "여행"{
+                cell.categoryImage.image = UIImage(named: "baggage")
+            }
+            else if row.category == "기타"{
+                cell.categoryImage.image = UIImage(named: "more")
+            }
+            
+            switch row.payment{
+            case PaymentMethod.card.rawValue:
+                cell.paymentLabel.image = UIImage(named: "credit-card")
+            case PaymentMethod.cash.rawValue:
+                cell.paymentLabel.image = UIImage(named: "dollar")
+            default:
+                print("not good")
+            }
         }
         
         cell.dateLabel.text = row.usedDate
@@ -149,21 +237,16 @@ extension CalendarViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController  else { return }
         let row = chosenDayTasks[indexPath.row]
-        
         vc.task = row
-        vc.dateTmp = row.usedDate
-        vc.contentTmp = row.content
-
-        if let income = row.income{
-            // 수입.
-            vc.incomeTmp = "\(income)원"
-
-        }else{
-            // 지출.
-            vc.spendingTmp = "\(row.spending!)원"
-            vc.categoryTitleTmp = row.category
+        vc.handler = {
+            self.tasks = self.localRealm.objects(BudgetModel.self)
+            self.chosenDayTasks = self.tasks.where {
+                $0.usedDate == self.selectedDate
+            }
+            self.expenseTableView.reloadData()
         }
+        
         vc.modalPresentationStyle = .overFullScreen
-        self.present(vc, animated: true, completion: nil)
+        self.present(vc, animated: true)
     }
 }

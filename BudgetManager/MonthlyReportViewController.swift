@@ -120,6 +120,21 @@ class MonthlyReportViewController: UIViewController {
         pieChartUpdate()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tasks = localRealm.objects(BudgetModel.self)
+        let today = Date()
+        let dateFormatter2 = DateFormatter()
+        dateFormatter2.dateFormat = "yyyy-MM"
+        let query = dateFormatter2.string(from: today)
+        chosenDate = query
+        monthTasks = tasks.where {
+            $0.usedDate.contains(query)
+        }
+        
+        pieChartUpdate()
+    }
+    
     @IBAction func monthButtonClicked(_ sender: UIButton) {
         
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "DatePickerViewController") as? DatePickerViewController else { return }
