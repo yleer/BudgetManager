@@ -14,29 +14,27 @@ class AddExpenseViewController: UIViewController{
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var selectedImage: UIImageView!
     @IBOutlet weak var contentTextField: UITextField!
-    
     @IBOutlet weak var categoryButton: UIButton!
-    var selectedCategotyIndex: Int?
-    var dateToAdd: String?
     @IBOutlet weak var expenseSegment: UISegmentedControl!
     @IBOutlet weak var paymentSegment: UISegmentedControl!
+    
+    var selectedCategotyIndex: Int?
+    var dateToAdd: String?
+    
     let localRealm = try! Realm()
+    
+    var handler: (() -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        print(dateToAdd)
     }
 
     let category = ["식료", "교육", "장보기", "의류", "의료", "교통", "레져", "여가", "여행", "기타" ]
     @IBAction func categoryButtonClicked(_ sender: UIButton) {
         guard let vc =  self.storyboard?.instantiateViewController(withIdentifier: "CategoryPopUpViewController") as?  CategoryPopUpViewController else { return }
-        
-        
+    
         vc.buttonActionHandler = {
             self.selectedCategotyIndex = vc.selectedButton
-            
-            
             self.categoryButton.setTitle(self.category[self.selectedCategotyIndex!], for: .normal)
         }
         
@@ -93,7 +91,7 @@ class AddExpenseViewController: UIViewController{
                     localRealm.add(task)
                 }
             }
-            
+            handler!()
             dismiss(animated: true, completion: nil)
         }
     }
@@ -106,8 +104,6 @@ class AddExpenseViewController: UIViewController{
         let pickerView = PHPickerViewController(configuration: configuration)
         pickerView.delegate = self
         present(pickerView, animated: true, completion: nil)
-        
-        
     }
     
     
