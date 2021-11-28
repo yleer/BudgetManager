@@ -55,7 +55,7 @@ class DetailViewController: UIViewController {
     
     
     @IBAction func deleteButtonClicked(_ sender: UIButton) {
-        let alertVC = UIAlertController(title: "영수증으로 내역을 첨부하시겠습니까?", message: "", preferredStyle: .actionSheet)
+        let alertVC = UIAlertController(title: "해당 내역을 삭제하시겠습니까?", message: "삭제하면 되돌릴 수 없습니다", preferredStyle: .alert)
         
         let deleteButton = UIAlertAction(title: "삭제하시겠습니까?", style: .destructive, handler: {_ in
             

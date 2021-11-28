@@ -31,7 +31,6 @@
 		88B3BAD827463F2B00ECB3EB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 88B3BAD727463F2B00ECB3EB /* RealmSwift */; };
 		88B3BADA27466A0900ECB3EB /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BAD927466A0900ECB3EB /* MainCollectionViewCell.swift */; };
 		88C078D22747D0D800CF0900 /* CategoryPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C078D12747D0D800CF0900 /* CategoryPopUpViewController.swift */; };
-		88C61914274B5ED500724AA0 /* PRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C61913274B5ED400724AA0 /* PRViewController.swift */; };
 		88CF44EF274DF31B00F67A06 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CF44EE274DF31A00F67A06 /* DatePickerViewController.swift */; };
 		88CF44F1274E4DAC00F67A06 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CF44F0274E4DAC00F67A06 /* SettingTableViewController.swift */; };
 		88CF44F3274E512800F67A06 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CF44F2274E512800F67A06 /* SearchViewController.swift */; };
@@ -61,7 +60,6 @@
 		88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		88B3BAD927466A0900ECB3EB /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		88C078D12747D0D800CF0900 /* CategoryPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopUpViewController.swift; sourceTree = "<group>"; };
-		88C61913274B5ED400724AA0 /* PRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRViewController.swift; sourceTree = "<group>"; };
 		88CF44EE274DF31A00F67A06 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		88CF44F0274E4DAC00F67A06 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		88CF44F2274E512800F67A06 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -127,35 +125,66 @@
 			isa = PBXGroup;
 			children = (
 				884FAAB4274A6892009F4A6A /* Realm */,
+				88B0E9572753CAE0004F5017 /* Main Sb */,
+				88B0E9582753CAF5004F5017 /* Calendar Sb */,
+				88B0E95A2753CB2B004F5017 /* MonthlyReport Sb */,
+				88B0E9592753CB1C004F5017 /* Setting Sb */,
 				889FC8C72744DCAF00F16ADF /* AppDelegate.swift */,
-				889FC8CD2744DCAF00F16ADF /* Main.storyboard */,
-				88C078D12747D0D800CF0900 /* CategoryPopUpViewController.swift */,
-				88B3BAD927466A0900ECB3EB /* MainCollectionViewCell.swift */,
-				88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */,
-				889FC8CB2744DCAF00F16ADF /* ViewController.swift */,
-				889FC8D22744DCB200F16ADF /* LaunchScreen.storyboard */,
-				88B3BABC274637AC00ECB3EB /* CalendarSB.storyboard */,
-				88B3BAC32746380A00ECB3EB /* CalendarViewController.swift */,
-				88B3BABE274637BE00ECB3EB /* MonthlyReportSB.storyboard */,
-				88CF44EE274DF31A00F67A06 /* DatePickerViewController.swift */,
-				88B3BAC52746382100ECB3EB /* MonthlyReportViewController.swift */,
-				88B3BAC0274637CC00ECB3EB /* SettingSB.storyboard */,
-				88CF44F2274E512800F67A06 /* SearchViewController.swift */,
-				88CF44F0274E4DAC00F67A06 /* SettingTableViewController.swift */,
-				889FC8D02744DCB200F16ADF /* Assets.xcassets */,
 				88B3BAC2274637E700ECB3EB /* Supporting Files */,
 				889FC8D52744DCB200F16ADF /* Info.plist */,
 				88A091332748F46900DE4E95 /* ExpenseTableViewCell.swift */,
 				88A091342748F46900DE4E95 /* ExpenseTableViewCell.xib */,
-				88C61913274B5ED400724AA0 /* PRViewController.swift */,
-				884BF003274CA42500FA3504 /* DetailViewController.swift */,
 			);
 			path = BudgetManager;
+			sourceTree = "<group>";
+		};
+		88B0E9572753CAE0004F5017 /* Main Sb */ = {
+			isa = PBXGroup;
+			children = (
+				88B3BAD927466A0900ECB3EB /* MainCollectionViewCell.swift */,
+				889FC8CD2744DCAF00F16ADF /* Main.storyboard */,
+				88C078D12747D0D800CF0900 /* CategoryPopUpViewController.swift */,
+				88B3BAC927463D9F00ECB3EB /* AddExpenseViewController.swift */,
+				889FC8CB2744DCAF00F16ADF /* ViewController.swift */,
+			);
+			path = "Main Sb";
+			sourceTree = "<group>";
+		};
+		88B0E9582753CAF5004F5017 /* Calendar Sb */ = {
+			isa = PBXGroup;
+			children = (
+				88B3BABC274637AC00ECB3EB /* CalendarSB.storyboard */,
+				88B3BAC32746380A00ECB3EB /* CalendarViewController.swift */,
+				884BF003274CA42500FA3504 /* DetailViewController.swift */,
+			);
+			path = "Calendar Sb";
+			sourceTree = "<group>";
+		};
+		88B0E9592753CB1C004F5017 /* Setting Sb */ = {
+			isa = PBXGroup;
+			children = (
+				88B3BAC0274637CC00ECB3EB /* SettingSB.storyboard */,
+				88CF44F2274E512800F67A06 /* SearchViewController.swift */,
+				88CF44F0274E4DAC00F67A06 /* SettingTableViewController.swift */,
+			);
+			path = "Setting Sb";
+			sourceTree = "<group>";
+		};
+		88B0E95A2753CB2B004F5017 /* MonthlyReport Sb */ = {
+			isa = PBXGroup;
+			children = (
+				88B3BABE274637BE00ECB3EB /* MonthlyReportSB.storyboard */,
+				88CF44EE274DF31A00F67A06 /* DatePickerViewController.swift */,
+				88B3BAC52746382100ECB3EB /* MonthlyReportViewController.swift */,
+			);
+			path = "MonthlyReport Sb";
 			sourceTree = "<group>";
 		};
 		88B3BAC2274637E700ECB3EB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				889FC8D02744DCB200F16ADF /* Assets.xcassets */,
+				889FC8D22744DCB200F16ADF /* LaunchScreen.storyboard */,
 				889FC8C92744DCAF00F16ADF /* SceneDelegate.swift */,
 			);
 			path = "Supporting Files";
@@ -311,7 +340,6 @@
 				88A091352748F46A00DE4E95 /* ExpenseTableViewCell.swift in Sources */,
 				88CF44EF274DF31B00F67A06 /* DatePickerViewController.swift in Sources */,
 				88B3BAC42746380A00ECB3EB /* CalendarViewController.swift in Sources */,
-				88C61914274B5ED500724AA0 /* PRViewController.swift in Sources */,
 				889FC8CC2744DCAF00F16ADF /* ViewController.swift in Sources */,
 				889FC8C82744DCAF00F16ADF /* AppDelegate.swift in Sources */,
 				88B3BADA27466A0900ECB3EB /* MainCollectionViewCell.swift in Sources */,
