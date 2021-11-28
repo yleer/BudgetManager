@@ -16,15 +16,7 @@ class AddExpenseViewController: UIViewController{
     @IBOutlet weak var selectedImage: UIImageView!
     @IBOutlet weak var contentTextField: UITextField!
     @IBOutlet weak var categoryButton: UIButton!
-    @IBOutlet weak var expenseSegment: UISegmentedControl!{
-        didSet{
-            if expenseSegment.selectedSegmentIndex == 0 {
-                categoryButton.isHidden = false
-            }else{
-                categoryButton.isHidden = true
-            }
-        }
-    }
+    @IBOutlet weak var expenseSegment: UISegmentedControl!
     @IBOutlet weak var paymentSegment: UISegmentedControl!
     
     var selectedCategotyIndex: Int?
@@ -87,11 +79,11 @@ class AddExpenseViewController: UIViewController{
         let content = contentTextField.text
         {
             var catogry = ""
-            if categoryButton.isHidden {
-                catogry = ""
-            }else{
+            if expenseSegment.selectedSegmentIndex == 0 {
                 catogry = category[selectIndex]
             }
+           
+            
              
             
             var  payment = ""
@@ -144,11 +136,13 @@ class AddExpenseViewController: UIViewController{
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         // MARK: 여기 값으로 segment 컨트롤.
         if sender == expenseSegment{
-            if expenseSegment.selectedSegmentIndex == 0 {
-                categoryButton.isHidden = false
-            }else{
-                categoryButton.isHidden = true
+            if expenseSegment.selectedSegmentIndex == 1 {
                 selectedCategotyIndex = 100
+                categoryButton.setTitle("수익", for: .normal)
+                categoryButton.isUserInteractionEnabled = false
+            }else{
+                categoryButton.setTitle("카테고리", for: .normal)
+                categoryButton.isUserInteractionEnabled = true
             }
         }
         
@@ -176,11 +170,9 @@ extension AddExpenseViewController: PHPickerViewControllerDelegate {
 
 extension AddExpenseViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-       if let x = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) {
-          return true
-       } else {
-          return false
-       }
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        return allowedCharacters.isSuperset(of: characterSet)
     }
 }
 
