@@ -75,43 +75,26 @@ class ViewController: UIViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if selectedDate != ""{
+            tasks = localRealm.objects(BudgetModel.self)
+            filterdTasks = tasks.where {
+                $0.usedDate == selectedDate
+            }
+            historyCollectionView.reloadData()
+        }else{
+            getToday()
+        }
+    }
+    
     
     func fsCalendarConfigure() {
-        topCalendar.appearance.borderRadius = 3
         topCalendar.appearance.headerMinimumDissolvedAlpha = 0.0
-
-        
-        topCalendar.delegate = self
-        topCalendar.dataSource = self
-
-
-//        topCalendar.calendarHeaderView.setScrollOffset(0, animated: false)
-//        topCalendar.appearance.borderDefaultColor = .black
-
-//        topCalendar.appearance.headerTitleColor = UIColor(red: 65, green: 68, blue: 88, alpha: 0.45)
-//        topCalendar.appearance.selectionColor = UIColor(red: 65, green: 68, blue: 88, alpha: 0.45)
-        
-        
         topCalendar.appearance.headerDateFormat = "YYYY년 M월"
         topCalendar.locale = Locale(identifier: "ko_KR")
         topCalendar.scope = .week
-        
-        topCalendar.headerHeight = 30
-        topCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 22) // 해더 글자
-        topCalendar.appearance.titleFont = UIFont.systemFont(ofSize: 17) // 날짜
-
     }
-    var events : [Date] = []
-    func setUpEvents() {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "yyyy-MM-dd"
-        let xmas = formatter.date(from: "2020-12-25")
-        let sampledate = formatter.date(from: "2020-08-22")
-        events = [xmas!, sampledate!]
-    }
-
-    
 
     @IBAction func addButtonClicked(_ sender: UIButton) {
         guard let vc =  self.storyboard?.instantiateViewController(withIdentifier: "AddExpenseViewController") as?  AddExpenseViewController else { return }
@@ -138,9 +121,19 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         let sb = UIStoryboard(name: "CalendarSB", bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         vc.task = item
+        vc.handler = {
+            self.tasks = self.localRealm.objects(BudgetModel.self)
+            self.filterdTasks = self.tasks.where {
+                $0.usedDate == self.selectedDate
+            }
+            
+            self.historyCollectionView.reloadData()
+            
+        }
  
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true, completion: nil)
+        
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filterdTasks.count
@@ -240,16 +233,22 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
             $0.usedDate == selectedDate
         }
     }
-//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+////        print(monthTasks)
+//        for day in filterdTasks{
 //
-//        if self.events.contains(date) {
-//            print("asd")
-//            return 1
+//            let query = dateFormatter.string(from: date)
+//
+//            print(day.usedDate, query)
+//            if query == day.usedDate{
+//                return 1
+//            }
 //        }
-//        else {
-//            return 0
-//        }
-//    }
+        return 1
+    }
 }
 
 

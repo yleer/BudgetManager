@@ -24,17 +24,23 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="c6P-zF-wS6">
-                        <rect key="frame" x="344" y="27.5" width="64" height="30"/>
+                        <rect key="frame" x="310.5" y="27.5" width="97.5" height="30"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수입" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvW-2P-E9P">
+                                <rect key="frame" x="0.0" y="0.0" width="29.5" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beach" translatesAutoresizingMaskIntoConstraints="NO" id="568-9S-j0b">
-                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                <rect key="frame" x="33.5" y="0.0" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="KWm-7W-r6J"/>
                                     <constraint firstAttribute="height" constant="30" id="gp6-yq-HAS"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fast-food" translatesAutoresizingMaskIntoConstraints="NO" id="TqQ-mB-jTx">
-                                <rect key="frame" x="34" y="0.0" width="30" height="30"/>
+                                <rect key="frame" x="67.5" y="0.0" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="NDn-BD-uIr"/>
                                     <constraint firstAttribute="width" constant="30" id="nJL-Yq-BeM"/>
@@ -72,6 +78,7 @@
                 <outlet property="categoryImage" destination="568-9S-j0b" id="PWt-Jg-gAh"/>
                 <outlet property="contentLabel" destination="wEz-zr-hoT" id="IcV-iO-vy0"/>
                 <outlet property="dateLabel" destination="9xh-38-n9U" id="Ldu-47-wSj"/>
+                <outlet property="incomeLabel" destination="uvW-2P-E9P" id="PWH-In-DnW"/>
                 <outlet property="paymentLabel" destination="TqQ-mB-jTx" id="DR1-El-ViT"/>
                 <outlet property="priceLabel" destination="VFN-Fg-Nmg" id="5M1-Ra-JJX"/>
             </connections>

@@ -27,6 +27,9 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="weekdayTextColor">
                                         <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="eventDefaultColor">
+                                        <color key="value" systemColor="systemYellowColor"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이번달 총 수익 : 500,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Me7-L3-3z6">
@@ -145,10 +148,10 @@
                                             <action selector="deleteButtonClicked:" destination="eBg-Un-p8o" eventType="touchUpInside" id="PRp-dP-DAy"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5000000" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vef-iv-IWW">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="50000" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vef-iv-IWW">
                                         <rect key="frame" x="30" y="157" width="288" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금액" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGu-jT-I7A">
                                         <rect key="frame" x="12" y="136" width="24.5" height="17"/>
@@ -171,7 +174,6 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="mkq-xo-Zgn" firstAttribute="trailing" secondItem="ODf-PN-mfA" secondAttribute="trailing" id="2qs-xu-ei4"/>
-                                    <constraint firstItem="Xh6-gm-IQz" firstAttribute="trailing" secondItem="Vef-iv-IWW" secondAttribute="trailing" id="3aI-pn-XPr"/>
                                     <constraint firstItem="Vef-iv-IWW" firstAttribute="top" secondItem="xGu-jT-I7A" secondAttribute="bottom" constant="4" id="44j-hh-I6a"/>
                                     <constraint firstItem="8vF-hB-mJA" firstAttribute="top" secondItem="INQ-eR-Uqe" secondAttribute="top" constant="20" id="6Ia-0s-48y"/>
                                     <constraint firstItem="8vF-hB-mJA" firstAttribute="centerX" secondItem="INQ-eR-Uqe" secondAttribute="centerX" id="90b-uN-BF5"/>
@@ -182,13 +184,14 @@
                                     <constraint firstAttribute="trailing" secondItem="ODf-PN-mfA" secondAttribute="trailing" constant="12" id="OZm-3A-CHQ"/>
                                     <constraint firstItem="Vef-iv-IWW" firstAttribute="centerY" secondItem="INQ-eR-Uqe" secondAttribute="centerY" id="SBh-eN-g5H"/>
                                     <constraint firstItem="Xh6-gm-IQz" firstAttribute="leading" secondItem="Vef-iv-IWW" secondAttribute="leading" id="Tyg-3G-P2m"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vef-iv-IWW" secondAttribute="trailing" constant="30" id="ULF-1w-R0g"/>
                                     <constraint firstItem="Vef-iv-IWW" firstAttribute="leading" secondItem="INQ-eR-Uqe" secondAttribute="leading" constant="30" id="fUZ-cR-x1T"/>
                                     <constraint firstItem="bra-HI-z26" firstAttribute="leading" secondItem="INQ-eR-Uqe" secondAttribute="leading" constant="12" id="fWn-tx-p73"/>
                                     <constraint firstItem="ODf-PN-mfA" firstAttribute="top" secondItem="INQ-eR-Uqe" secondAttribute="top" constant="30" id="gT9-cJ-GOe"/>
                                     <constraint firstItem="mkq-xo-Zgn" firstAttribute="top" secondItem="ODf-PN-mfA" secondAttribute="bottom" constant="10" id="huD-Sk-o3F"/>
                                     <constraint firstItem="Xh6-gm-IQz" firstAttribute="top" secondItem="GmH-me-oyL" secondAttribute="bottom" constant="4" id="uJC-Ol-zUS"/>
                                     <constraint firstItem="bra-HI-z26" firstAttribute="top" secondItem="INQ-eR-Uqe" secondAttribute="top" constant="30" id="v09-Jm-cXb"/>
-                                    <constraint firstAttribute="trailing" secondItem="Vef-iv-IWW" secondAttribute="trailing" constant="30" id="z2U-Qy-X1A"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xh6-gm-IQz" secondAttribute="trailing" constant="30" id="zgS-Bc-QmS"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -209,6 +212,7 @@
                         <outlet property="containerView" destination="INQ-eR-Uqe" id="kR3-S8-dw6"/>
                         <outlet property="contentTextField" destination="Xh6-gm-IQz" id="L4Q-3C-rCd"/>
                         <outlet property="dateLabel" destination="mkq-xo-Zgn" id="3R1-VZ-tQf"/>
+                        <outlet property="deleteButton" destination="ODf-PN-mfA" id="bsN-5g-F7z"/>
                         <outlet property="paymentImageButton" destination="wO4-7k-02R" id="1xb-gd-Cdo"/>
                         <outlet property="priceTextField" destination="Vef-iv-IWW" id="caV-V4-K0V"/>
                         <outlet property="titleLabel" destination="8vF-hB-mJA" id="dR0-KZ-Xnh"/>
@@ -225,6 +229,9 @@
         <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

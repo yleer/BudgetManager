@@ -13,6 +13,7 @@ class ExpenseTableViewCell: UITableViewCell {
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var incomeLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     static let identifier = "ExpenseTableViewCell"
     override func awakeFromNib() {

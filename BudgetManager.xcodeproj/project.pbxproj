@@ -35,6 +35,7 @@
 		88CF44EF274DF31B00F67A06 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CF44EE274DF31A00F67A06 /* DatePickerViewController.swift */; };
 		88CF44F1274E4DAC00F67A06 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CF44F0274E4DAC00F67A06 /* SettingTableViewController.swift */; };
 		88CF44F3274E512800F67A06 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CF44F2274E512800F67A06 /* SearchViewController.swift */; };
+		88D4F35B27538BF3000E807E /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 88D4F35A27538BF3000E807E /* IQKeyboardManagerSwift */; };
 		8C287450FC9309BF3CB6F3C8 /* Pods_BudgetManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C882AC5F3FC5B2B1A42FB6 /* Pods_BudgetManager.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88B3BAD327463F0200ECB3EB /* SwiftyJSON in Frameworks */,
+				88D4F35B27538BF3000E807E /* IQKeyboardManagerSwift in Frameworks */,
 				8885D4E127489C1800A5EC57 /* Charts in Frameworks */,
 				88B3BACD27463EE700ECB3EB /* FSCalendar in Frameworks */,
 				88B3BAD627463F2B00ECB3EB /* Realm in Frameworks */,
@@ -192,6 +194,7 @@
 				88B3BAD527463F2B00ECB3EB /* Realm */,
 				88B3BAD727463F2B00ECB3EB /* RealmSwift */,
 				8885D4E027489C1800A5EC57 /* Charts */,
+				88D4F35A27538BF3000E807E /* IQKeyboardManagerSwift */,
 			);
 			productName = BudgetManager;
 			productReference = 889FC8C42744DCAF00F16ADF /* BudgetManager.app */;
@@ -227,6 +230,7 @@
 				88B3BAD127463F0200ECB3EB /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				88B3BAD427463F2B00ECB3EB /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				8885D4DF27489C1800A5EC57 /* XCRemoteSwiftPackageReference "Charts" */,
+				88D4F35927538BF3000E807E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 889FC8C52744DCAF00F16ADF /* Products */;
 			projectDirPath = "";
@@ -581,6 +585,14 @@
 				kind = branch;
 			};
 		};
+		88D4F35927538BF3000E807E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -613,6 +625,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88B3BAD427463F2B00ECB3EB /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		88D4F35A27538BF3000E807E /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88D4F35927538BF3000E807E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

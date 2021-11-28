@@ -11,11 +11,20 @@ import RealmSwift
 
 class AddExpenseViewController: UIViewController{
 
+    @IBOutlet weak var recipetButton: UIButton!
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var selectedImage: UIImageView!
     @IBOutlet weak var contentTextField: UITextField!
     @IBOutlet weak var categoryButton: UIButton!
-    @IBOutlet weak var expenseSegment: UISegmentedControl!
+    @IBOutlet weak var expenseSegment: UISegmentedControl!{
+        didSet{
+            if expenseSegment.selectedSegmentIndex == 0 {
+                categoryButton.isHidden = false
+            }else{
+                categoryButton.isHidden = true
+            }
+        }
+    }
     @IBOutlet weak var paymentSegment: UISegmentedControl!
     
     var selectedCategotyIndex: Int?
@@ -27,6 +36,8 @@ class AddExpenseViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        priceTextField.delegate = self
+        recipetButton.isHidden = true
     }
 
     let category = ["식료", "교육", "장보기", "의류", "의료", "교통", "레져", "여가", "여행", "기타" ]
@@ -43,6 +54,8 @@ class AddExpenseViewController: UIViewController{
         
     }
     
+    
+    // MARK: 다음에 구현하기.
     @IBAction func reciptButtonClicked(_ sender: UIButton) {
         
         let alertVC = UIAlertController(title: "영수증으로 내역을 첨부하시겠습니까?", message: "", preferredStyle: .alert)
@@ -65,13 +78,21 @@ class AddExpenseViewController: UIViewController{
     
     // MARK: UX 생각좀 해야될듯
     @IBAction func saveButtonClicked(_ sender: UIBarButtonItem) {
+        
+        
         if let selectIndex = selectedCategotyIndex,
         let date = dateToAdd,
         let prcieString = priceTextField.text,
         let price = Int(prcieString),
         let content = contentTextField.text
         {
-            let catogry = category[selectIndex]
+            var catogry = ""
+            if categoryButton.isHidden {
+                catogry = ""
+            }else{
+                catogry = category[selectIndex]
+            }
+             
             
             var  payment = ""
             if paymentSegment.selectedSegmentIndex == 0 {
@@ -93,22 +114,44 @@ class AddExpenseViewController: UIViewController{
             }
             handler!()
             dismiss(animated: true, completion: nil)
+        }else{
+            let alertVC = UIAlertController(title: "필요한 정보를 모두 기입해주세요.", message: "지출을 기입시 지출금과 카테고리를 정해주세요.", preferredStyle: .alert)
+            
+            let okButton = UIAlertAction(title: "확인", style: .default, handler: nil)
+            
+            let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            
+            alertVC.addAction(okButton)
+            alertVC.addAction(cancelButton)
+            
+            present(alertVC, animated: true, completion: nil)
+            
         }
     }
     
     
  
-    @IBAction func addImageButtonClicked(_ sender: UIBarButtonItem) {
-        var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 1
-        let pickerView = PHPickerViewController(configuration: configuration)
-        pickerView.delegate = self
-        present(pickerView, animated: true, completion: nil)
-    }
+    // MARK: 사진 추가 기능 나중에 추가하자.
+//    @IBAction func addImageButtonClicked(_ sender: UIBarButtonItem) {
+//        var configuration = PHPickerConfiguration()
+//        configuration.selectionLimit = 1
+//        let pickerView = PHPickerViewController(configuration: configuration)
+//        pickerView.delegate = self
+//        present(pickerView, animated: true, completion: nil)
+//    }
     
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         // MARK: 여기 값으로 segment 컨트롤.
+        if sender == expenseSegment{
+            if expenseSegment.selectedSegmentIndex == 0 {
+                categoryButton.isHidden = false
+            }else{
+                categoryButton.isHidden = true
+                selectedCategotyIndex = 100
+            }
+        }
+        
         print(sender.selectedSegmentIndex)
     }
 }
@@ -130,6 +173,16 @@ extension AddExpenseViewController: PHPickerViewControllerDelegate {
     }
 }
 
+
+extension AddExpenseViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+       if let x = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) {
+          return true
+       } else {
+          return false
+       }
+    }
+}
 
 enum PaymentMethod : String {
     case card

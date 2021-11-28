@@ -19,8 +19,11 @@ class CalendarViewController: UIViewController {
     let localRealm = try! Realm()
     var tasks: Results<BudgetModel>!
     var monthTasks: Results<BudgetModel>!
-//    {
-//        didSet{
+    {
+        didSet{
+            calendarView.reloadData()
+        }
+    }
 //            var query = ""
 //
 //
@@ -54,16 +57,15 @@ class CalendarViewController: UIViewController {
     
     var chosenDayTasks: Results<BudgetModel>!{
         didSet{
-//            print(chosenDayTasks)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("ASdf")
         let today = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
+        
     
         selectedDate = dateFormatter.string(from: today)
         tasks = localRealm.objects(BudgetModel.self)
@@ -97,7 +99,7 @@ class CalendarViewController: UIViewController {
         currentMonthIncome.text = "이번달 총 수익 : \(incomeFormatted)원"
         currentMonthSpending.text = "이번달 총 지출 : \(spendingFormatted)원"
         
-        
+        expenseTableView.reloadData()
     }
     
     
@@ -170,6 +172,23 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         currentMonthIncome.text = "이번달 총 수익 : \(incomeFormatted)원"
         currentMonthSpending.text = "이번달 총 지출 : \(spendingFormatted)원"
     }
+    
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        print(monthTasks)
+        for day in monthTasks{
+            
+            let query = dateFormatter.string(from: date)
+            
+            print(day.usedDate, query)
+            if query == day.usedDate{
+                return 1
+            }
+        }
+        return 0
+    }
 
 }
 
@@ -181,16 +200,23 @@ extension CalendarViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseTableViewCell", for: indexPath) as? ExpenseTableViewCell else { return UITableViewCell() }
         let row = chosenDayTasks[indexPath.row]
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
         
         if let income = row.income{
-            cell.priceLabel.text = "\(income)원"
+            let formattedIncome = numberFormatter.string(for: income)!
+            cell.priceLabel.text = "\(formattedIncome)원"
             
             cell.categoryImage.isHidden = true
             cell.paymentLabel.isHidden = true
+            cell.incomeLabel.isHidden = false
         }else{
             cell.categoryImage.isHidden = false
             cell.paymentLabel.isHidden = false
-            cell.priceLabel.text = "\(row.spending!)원"
+            cell.incomeLabel.isHidden = true
+            let formattedSpending = numberFormatter.string(for: row.spending!)!
+            cell.priceLabel.text = "\(formattedSpending)원"
             
             if row.category == "식료"{
                 cell.categoryImage.image = UIImage(named: "diet")

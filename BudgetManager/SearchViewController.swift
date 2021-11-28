@@ -26,7 +26,7 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print(searchBar.text)
+//        print(searchBar.text)
     }
 }
 

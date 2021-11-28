@@ -12,14 +12,20 @@ import Charts
 class MonthlyReportViewController: UIViewController {
 
     @IBOutlet weak var monthButton: UIButton!
-    @IBOutlet weak var barChart: BarChartView!
     @IBOutlet weak var pieChart: PieChartView!
     @IBOutlet weak var totalIncome: UILabel!
     @IBOutlet weak var usedPercentage: UIProgressView!
+    @IBOutlet weak var monthlySpendingLabel: UILabel!
     
+    @IBOutlet weak var firstSpending: UILabel!
+    @IBOutlet weak var secondSpending: UILabel!
+    @IBOutlet weak var thirdSpending: UILabel!
+    
+    @IBOutlet weak var percentageLabel: UILabel!
     
     let localRealm = try! Realm()
     var tasks: Results<BudgetModel>!
+    
     var monthSpending = 0
     var monthIncome = 0
     
@@ -39,20 +45,52 @@ class MonthlyReportViewController: UIViewController {
             numberFormatter.numberStyle = .decimal
             let result = numberFormatter.string(for: monthIncome)!
             totalIncome.text = "\(result)원"
-            
-//            pv.progressTintColor = UIColor.green
-//            pv.trackTintColor = UIColor.white
+            let result2 = numberFormatter.string(for: monthSpending)!
+            monthlySpendingLabel.text = "\(result2)원"
             usedPercentage.progress = Float(Float(monthSpending) / Float(monthIncome))
+      
+            var percent = Float(Float(monthSpending) / Float(monthIncome)) * 100.0
+            if Float(monthIncome) == 0{
+                percent = 0.0
+            }
+            if percent > 100.0{
+                percentageLabel.text = "100%를 초과했습니다."
+            }else{
+                // 소소ㅜ 2
+                let str = String(format: "%.2f", percent)
+                percentageLabel.text = "\(str)%"
+            }
             
             
-            print("monthincome",monthIncome)
-            print("monthoutcome",monthSpending)
+            
+            let b = monthTasks.where {
+                $0.income == nil
+            }
+            let a = b.sorted(byKeyPath: "spending", ascending: false)
+            if a.count >= 3 {
+                
+                firstSpending.text = "\(a[0].spending!.formatIntToString())원 " + a[0].content
+                secondSpending.text = "\(a[1].spending!.formatIntToString())원 " + a[1].content
+                thirdSpending.text = "\(a[2].spending!.formatIntToString())원 " + a[2].content
+            }
+            else if a.count == 2 {
+                firstSpending.text = "\(a[0].spending!.formatIntToString())원 " + a[0].content
+                secondSpending.text = "\(a[1].spending!.formatIntToString())원 " + a[1].content
+                thirdSpending.text = "지출이 없습니다."
+            }else if a.count == 1 {
+                firstSpending.text = "\(a[0].spending!.formatIntToString())원 " + a[0].content
+                secondSpending.text = "지출이 없습니다."
+                thirdSpending.text = "지출이 없습니다."
+            }else if a.count == 0 {
+                firstSpending.text = "지출이 없습니다."
+                secondSpending.text = "지출이 없습니다."
+                thirdSpending.text = "지출이 없습니다."
+            }
         }
     }
     
     
     func pieChartUpdate() {
-        
         var categories: [Int] = [0,0,0,0,0,0,0,0,0,0]
         for task in monthTasks{
             if task.spending != nil{
@@ -116,7 +154,6 @@ class MonthlyReportViewController: UIViewController {
         monthTasks = tasks.where {
             $0.usedDate.contains(query)
         }
-        
         pieChartUpdate()
     }
     
@@ -131,7 +168,6 @@ class MonthlyReportViewController: UIViewController {
         monthTasks = tasks.where {
             $0.usedDate.contains(query)
         }
-        
         pieChartUpdate()
     }
     
@@ -149,8 +185,6 @@ class MonthlyReportViewController: UIViewController {
         vc.chosenYear = Int(query[..<stopIndex!])!
         vc.chosenMonth = Int(query[a...])!
         
-        
-        
         vc.buttonActionHandler = {
             self.chosenDate = "\(vc.chosenYear)-\(vc.chosenMonth)"
             
@@ -159,9 +193,21 @@ class MonthlyReportViewController: UIViewController {
             self.monthTasks = self.tasks.where {
                 $0.usedDate.contains(self.chosenDate)
             }
+            self.pieChartUpdate()
         }
     
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true, completion: nil)
+    }
+}
+
+
+extension Int{
+    func formatIntToString () -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let result = numberFormatter.string(for: self)!
+        
+        return result
     }
 }
