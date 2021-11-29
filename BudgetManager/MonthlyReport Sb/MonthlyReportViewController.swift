@@ -9,7 +9,47 @@ import UIKit
 import RealmSwift
 import Charts
 
-class MonthlyReportViewController: UIViewController {
+class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    
+    var chosenYear = 2021
+    var chosenMonth = 11
+    
+    
+    let year: [Int] = Array(2000...2030)
+    let month: [Int] = Array(1...12)
+    
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 0 {
+            chosenYear = year[row]
+        }
+        
+        if component == 1{
+            chosenMonth = month[row]
+        }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if component == 0 {
+            return year.count
+        }else {
+            return month.count
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if component == 0 {
+            return "\(year[row]) 년"
+        }else{
+            return "\(month[row]) 월"
+        }
+    }
+    
 
     @IBOutlet weak var monthButton: UIButton!
     @IBOutlet weak var pieChart: PieChartView!
@@ -88,7 +128,7 @@ class MonthlyReportViewController: UIViewController {
             }
         }
     }
-    
+    let pickerFrame = UIPickerView(frame: CGRect(x: 5, y: 20, width: 250, height: 140))
     
     func pieChartUpdate() {
         var categories: [Int] = [0,0,0,0,0,0,0,0,0,0]
@@ -133,7 +173,6 @@ class MonthlyReportViewController: UIViewController {
         let dataSet = PieChartDataSet(entries: [entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10], label: "Widget Types")
         let data = PieChartData(dataSet: dataSet)
         dataSet.colors = ChartColorTemplates.joyful()
-        print(categories)
         pieChart.data = data
 
         pieChart.notifyDataSetChanged()
@@ -145,6 +184,10 @@ class MonthlyReportViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tabBarController?.tabBar.tintColor = .systemOrange
+        self.tabBarController?.tabBar.unselectedItemTintColor = .white
+        
         tasks = localRealm.objects(BudgetModel.self)
         let today = Date()
         let dateFormatter2 = DateFormatter()
@@ -173,31 +216,36 @@ class MonthlyReportViewController: UIViewController {
     
     @IBAction func monthButtonClicked(_ sender: UIButton) {
         
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "DatePickerViewController") as? DatePickerViewController else { return }
+        let yearIndex = year.firstIndex(of: chosenYear)!
+        let monthIndex = month.firstIndex(of: chosenMonth)!
         
-        let today = Date()
-        let dateFormatter2 = DateFormatter()
-        dateFormatter2.dateFormat = "yyyy-MM"
-        let query = dateFormatter2.string(from: today)
-        let stopIndex = query.firstIndex(of: "-")
         
-        let a = query.index(after: stopIndex!)
-        vc.chosenYear = Int(query[..<stopIndex!])!
-        vc.chosenMonth = Int(query[a...])!
         
-        vc.buttonActionHandler = {
-            self.chosenDate = "\(vc.chosenYear)-\(vc.chosenMonth)"
+        let alert = UIAlertController(title: "날짜를 골라주세요", message: "\n\n\n\n\n\n", preferredStyle: .alert)
+    
+        alert.view.addSubview(pickerFrame)
+        pickerFrame.delegate = self
+        pickerFrame.dataSource = self
+
+        pickerFrame.selectRow(yearIndex, inComponent: 0, animated: false)
+        pickerFrame.selectRow(monthIndex, inComponent: 1, animated: false)
+        
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { (UIAlertAction) in
             
-            let date = "\(vc.chosenYear)년 \(vc.chosenMonth)월"
+            self.chosenDate = "\(self.chosenYear)-\(self.chosenMonth)"
+            let date = "\(self.chosenYear)년 \(self.chosenMonth)월"
             self.monthButton.setTitle(date, for: .normal)
             self.monthTasks = self.tasks.where {
-                $0.usedDate.contains(self.chosenDate)
+                let a = $0.usedDate
+                
+                
+
             }
             self.pieChartUpdate()
-        }
-    
-        vc.modalPresentationStyle = .overFullScreen
-        present(vc, animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 

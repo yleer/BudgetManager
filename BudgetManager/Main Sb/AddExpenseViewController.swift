@@ -141,6 +141,7 @@ class AddExpenseViewController: UIViewController{
                 categoryButton.setTitle("수익", for: .normal)
                 categoryButton.isUserInteractionEnabled = false
             }else{
+                selectedCategotyIndex = nil
                 categoryButton.setTitle("카테고리", for: .normal)
                 categoryButton.isUserInteractionEnabled = true
             }

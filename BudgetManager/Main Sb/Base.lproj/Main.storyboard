@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--하루-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BudgetManager" customModuleProvider="target" sceneMemberID="viewController">
@@ -171,7 +171,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qOc-6a-kkL" secondAttribute="trailing" constant="20" id="yvY-0Z-FKp"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="esS-xR-Wce"/>
+                    <tabBarItem key="tabBarItem" title="하루" id="esS-xR-Wce"/>
                     <navigationItem key="navigationItem" id="mt6-g0-rIQ"/>
                     <connections>
                         <outlet property="addButton" destination="qOc-6a-kkL" id="fmu-bM-Ri1"/>
@@ -691,7 +691,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vTY-9z-2CK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1140" y="874"/>
+            <point key="canvasLocation" x="1148" y="910"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pgB-ar-uoq">

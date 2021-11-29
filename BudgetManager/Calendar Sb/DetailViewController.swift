@@ -52,6 +52,9 @@ class DetailViewController: UIViewController {
         contentTextField.text = task?.content
     }
     
+    @IBAction func closeButtonClicked(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
     
     
     @IBAction func deleteButtonClicked(_ sender: UIButton) {

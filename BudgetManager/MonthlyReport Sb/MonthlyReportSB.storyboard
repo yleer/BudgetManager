@@ -231,11 +231,11 @@
             </objects>
             <point key="canvasLocation" x="1900.0000000000002" y="109.82142857142857"/>
         </scene>
-        <!--Month Report-->
+        <!--월간 내역-->
         <scene sceneID="emA-tg-LTT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pla-uQ-LiO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Month Report" id="eY5-wA-26o"/>
+                    <tabBarItem key="tabBarItem" title="월간 내역" id="eY5-wA-26o"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9RF-V9-D3I">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

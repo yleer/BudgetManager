@@ -70,7 +70,7 @@
                             <constraint firstItem="Q5Q-Gr-EwZ" firstAttribute="leading" secondItem="Me7-L3-3z6" secondAttribute="leading" id="xXr-S1-nfN"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Njf-GF-KPn"/>
+                    <tabBarItem key="tabBarItem" title="달력" id="Njf-GF-KPn"/>
                     <navigationItem key="navigationItem" title="월별 리포트" id="BTi-jS-yUU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -135,19 +135,11 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2011년11월12일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkq-xo-Zgn">
-                                        <rect key="frame" x="224.5" y="71" width="111.5" height="20.5"/>
+                                        <rect key="frame" x="224" y="71" width="111.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODf-PN-mfA">
-                                        <rect key="frame" x="293" y="30" width="43" height="31"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
-                                        <connections>
-                                            <action selector="deleteButtonClicked:" destination="eBg-Un-p8o" eventType="touchUpInside" id="PRp-dP-DAy"/>
-                                        </connections>
-                                    </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="50000" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vef-iv-IWW">
                                         <rect key="frame" x="30" y="157" width="288" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -170,25 +162,45 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="L4s-xO-Ahd">
+                                        <rect key="frame" x="240.5" y="30" width="95" height="32"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DcV-xr-Y4K">
+                                                <rect key="frame" x="0.0" y="0.0" width="43" height="32"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="closeButtonClicked:" destination="eBg-Un-p8o" eventType="touchUpInside" id="0Ii-uf-QZe"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODf-PN-mfA">
+                                                <rect key="frame" x="52" y="0.0" width="43" height="32"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
+                                                <connections>
+                                                    <action selector="deleteButtonClicked:" destination="eBg-Un-p8o" eventType="touchUpInside" id="PRp-dP-DAy"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="mkq-xo-Zgn" firstAttribute="trailing" secondItem="ODf-PN-mfA" secondAttribute="trailing" id="2qs-xu-ei4"/>
                                     <constraint firstItem="Vef-iv-IWW" firstAttribute="top" secondItem="xGu-jT-I7A" secondAttribute="bottom" constant="4" id="44j-hh-I6a"/>
                                     <constraint firstItem="8vF-hB-mJA" firstAttribute="top" secondItem="INQ-eR-Uqe" secondAttribute="top" constant="20" id="6Ia-0s-48y"/>
+                                    <constraint firstItem="L4s-xO-Ahd" firstAttribute="top" secondItem="INQ-eR-Uqe" secondAttribute="top" constant="30" id="8Qa-r8-0KE"/>
                                     <constraint firstItem="8vF-hB-mJA" firstAttribute="centerX" secondItem="INQ-eR-Uqe" secondAttribute="centerX" id="90b-uN-BF5"/>
+                                    <constraint firstItem="mkq-xo-Zgn" firstAttribute="trailing" secondItem="ODf-PN-mfA" secondAttribute="trailing" id="ALh-nH-HQ5"/>
+                                    <constraint firstItem="mkq-xo-Zgn" firstAttribute="top" secondItem="L4s-xO-Ahd" secondAttribute="bottom" constant="9" id="CWO-so-CCb"/>
                                     <constraint firstItem="Xh6-gm-IQz" firstAttribute="top" secondItem="Vef-iv-IWW" secondAttribute="bottom" constant="30" id="Fib-es-bAA"/>
                                     <constraint firstAttribute="width" secondItem="INQ-eR-Uqe" secondAttribute="height" id="Gsa-I1-T08"/>
                                     <constraint firstItem="xGu-jT-I7A" firstAttribute="leading" secondItem="INQ-eR-Uqe" secondAttribute="leading" constant="12" id="NmS-1V-cmJ"/>
                                     <constraint firstItem="GmH-me-oyL" firstAttribute="leading" secondItem="xGu-jT-I7A" secondAttribute="leading" id="Np1-5f-V0f"/>
-                                    <constraint firstAttribute="trailing" secondItem="ODf-PN-mfA" secondAttribute="trailing" constant="12" id="OZm-3A-CHQ"/>
                                     <constraint firstItem="Vef-iv-IWW" firstAttribute="centerY" secondItem="INQ-eR-Uqe" secondAttribute="centerY" id="SBh-eN-g5H"/>
                                     <constraint firstItem="Xh6-gm-IQz" firstAttribute="leading" secondItem="Vef-iv-IWW" secondAttribute="leading" id="Tyg-3G-P2m"/>
                                     <constraint firstAttribute="trailing" secondItem="Vef-iv-IWW" secondAttribute="trailing" constant="30" id="ULF-1w-R0g"/>
+                                    <constraint firstAttribute="trailing" secondItem="L4s-xO-Ahd" secondAttribute="trailing" constant="12.5" id="fFk-tw-564"/>
                                     <constraint firstItem="Vef-iv-IWW" firstAttribute="leading" secondItem="INQ-eR-Uqe" secondAttribute="leading" constant="30" id="fUZ-cR-x1T"/>
                                     <constraint firstItem="bra-HI-z26" firstAttribute="leading" secondItem="INQ-eR-Uqe" secondAttribute="leading" constant="12" id="fWn-tx-p73"/>
-                                    <constraint firstItem="ODf-PN-mfA" firstAttribute="top" secondItem="INQ-eR-Uqe" secondAttribute="top" constant="30" id="gT9-cJ-GOe"/>
-                                    <constraint firstItem="mkq-xo-Zgn" firstAttribute="top" secondItem="ODf-PN-mfA" secondAttribute="bottom" constant="10" id="huD-Sk-o3F"/>
                                     <constraint firstItem="Xh6-gm-IQz" firstAttribute="top" secondItem="GmH-me-oyL" secondAttribute="bottom" constant="4" id="uJC-Ol-zUS"/>
                                     <constraint firstItem="bra-HI-z26" firstAttribute="top" secondItem="INQ-eR-Uqe" secondAttribute="top" constant="30" id="v09-Jm-cXb"/>
                                     <constraint firstAttribute="trailing" secondItem="Xh6-gm-IQz" secondAttribute="trailing" constant="30" id="zgS-Bc-QmS"/>

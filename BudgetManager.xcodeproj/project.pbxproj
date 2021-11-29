@@ -163,8 +163,8 @@
 		88B0E9592753CB1C004F5017 /* Setting Sb */ = {
 			isa = PBXGroup;
 			children = (
-				88B3BAC0274637CC00ECB3EB /* SettingSB.storyboard */,
 				88CF44F2274E512800F67A06 /* SearchViewController.swift */,
+				88B3BAC0274637CC00ECB3EB /* SettingSB.storyboard */,
 				88CF44F0274E4DAC00F67A06 /* SettingTableViewController.swift */,
 			);
 			path = "Setting Sb";

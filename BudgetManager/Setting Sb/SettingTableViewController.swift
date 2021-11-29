@@ -26,7 +26,7 @@ class SettingTableViewController: UITableViewController {
         if section == 0 {
             return 1
         }else {
-            return 3
+            return 2
         }
     }
     
@@ -56,5 +56,4 @@ class SettingTableViewController: UITableViewController {
             present(alertVC, animated: true, completion: nil)
         }
     }
-
 }

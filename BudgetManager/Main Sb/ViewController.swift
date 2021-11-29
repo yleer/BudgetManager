@@ -67,6 +67,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.tintColor = .systemOrange
+        self.tabBarController?.tabBar.unselectedItemTintColor = .white
         fsCalendarConfigure()
         historyCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         addButton.setTitle("", for: .normal)
