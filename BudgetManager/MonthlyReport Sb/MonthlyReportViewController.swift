@@ -69,7 +69,7 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
     var monthSpending = 0
     var monthIncome = 0
     
-    var monthTasks: Results<BudgetModel>!{
+    var monthTasks: Results<BudgetModel>! {
         didSet{
             monthSpending = 0
             monthIncome = 0
@@ -184,9 +184,14 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        print(localRealm.configuration.fileURL)
         
-        self.tabBarController?.tabBar.tintColor = .systemOrange
-        self.tabBarController?.tabBar.unselectedItemTintColor = .white
+//        navigationController?.navigationBar.barTintColor = .green
+//        UIColor(red: 45, green: 46, blue: 66, alpha: 1)
+        
+        
+//        self.tabBarController?.tabBar.tintColor = .systemOrange
+//        self.tabBarController?.tabBar.unselectedItemTintColor = .white
         
         tasks = localRealm.objects(BudgetModel.self)
         let today = Date()
@@ -202,24 +207,45 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tasks = localRealm.objects(BudgetModel.self)
-        let today = Date()
-        let dateFormatter2 = DateFormatter()
-        dateFormatter2.dateFormat = "yyyy-MM"
-        let query = dateFormatter2.string(from: today)
-        chosenDate = query
-        monthTasks = tasks.where {
-            $0.usedDate.contains(query)
+        
+        if chosenDate == "" {
+            let today = Date()
+            let dateFormatter2 = DateFormatter()
+            dateFormatter2.dateFormat = "yyyy-MM"
+            let query = dateFormatter2.string(from: today)
+            chosenDate = query
+            monthTasks = tasks.where {
+                $0.usedDate.contains(query)
+            }
+            pieChartUpdate()
         }
-        pieChartUpdate()
+        
+        tasks = localRealm.objects(BudgetModel.self)
+        if self.chosenMonth == 1{
+            self.chosenDate = "\(self.chosenYear)-0\(self.chosenMonth)"
+        }else{
+            self.chosenDate = "\(self.chosenYear)-\(self.chosenMonth)"
+        }
+        
+        let date = "\(self.chosenYear)년 \(self.chosenMonth)월"
+        self.monthButton.setTitle(date, for: .normal)
+        print(self.chosenDate)
+        self.monthTasks = self.tasks.where {
+            
+            $0.usedDate.contains(self.chosenDate)
+            
+            
+        }
+        self.pieChartUpdate()
+        
+        
+        
     }
     
     @IBAction func monthButtonClicked(_ sender: UIButton) {
         
         let yearIndex = year.firstIndex(of: chosenYear)!
         let monthIndex = month.firstIndex(of: chosenMonth)!
-        
-        
         
         let alert = UIAlertController(title: "날짜를 골라주세요", message: "\n\n\n\n\n\n", preferredStyle: .alert)
     
@@ -233,18 +259,23 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { (UIAlertAction) in
             
-            self.chosenDate = "\(self.chosenYear)-\(self.chosenMonth)"
+            if self.chosenMonth == 1{
+                self.chosenDate = "\(self.chosenYear)-0\(self.chosenMonth)"
+            }else{
+                self.chosenDate = "\(self.chosenYear)-\(self.chosenMonth)"
+            }
+            
             let date = "\(self.chosenYear)년 \(self.chosenMonth)월"
             self.monthButton.setTitle(date, for: .normal)
+            print(self.chosenDate)
             self.monthTasks = self.tasks.where {
-                let a = $0.usedDate
+                
+                $0.usedDate.contains(self.chosenDate)
                 
                 
-
             }
             self.pieChartUpdate()
         }))
-        
         present(alert, animated: true, completion: nil)
     }
 }

@@ -62,10 +62,10 @@ class CalendarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    
         let today = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        
     
         selectedDate = dateFormatter.string(from: today)
         tasks = localRealm.objects(BudgetModel.self)
@@ -117,16 +117,12 @@ class CalendarViewController: UIViewController {
         calendarView.appearance.borderRadius = 3
         calendarView.appearance.headerMinimumDissolvedAlpha = 0.0
 
-        calendarView.delegate = self
-        calendarView.dataSource = self
-
         calendarView.appearance.headerDateFormat = "YYYY년 M월"
         calendarView.locale = Locale(identifier: "ko_KR")
 
         calendarView.headerHeight = 30
         calendarView.appearance.headerTitleFont = UIFont.systemFont(ofSize: 22) // 해더 글자
         calendarView.appearance.titleFont = UIFont.systemFont(ofSize: 17) // 날짜
-
     }
 }
 

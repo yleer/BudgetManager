@@ -14,10 +14,12 @@
             <objects>
                 <tableViewController id="TG6-gG-9vA" customClass="SettingTableViewController" customModule="BudgetManager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="2Yb-1w-GdK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1764705882" green="0.18039215689999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" systemColor="systemYellowColor"/>
+                        <color key="separatorColor" red="0.1764705882" green="0.18039215689999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.1764705882" green="0.18039215689999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="" id="6ec-6M-2gB">
                                 <cells>
@@ -41,7 +43,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="ㅁㅇㅁㄴㅇㅁㄴ" id="Wpc-tH-XNp">
+                            <tableViewSection headerTitle="" id="Wpc-tH-XNp">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="8I1-hP-ZzO" style="IBUITableViewCellStyleDefault" id="qgR-Bi-haw">
                                         <rect key="frame" x="0.0" y="155" width="414" height="43.5"/>
@@ -148,7 +150,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hHo-h8-9yG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="설정" id="Xdq-RX-Ll8"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lfi-I3-i3X">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Lfi-I3-i3X">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.1764705882" green="0.18039215689999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>

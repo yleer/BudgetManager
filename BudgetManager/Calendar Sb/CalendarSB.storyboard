@@ -31,14 +31,18 @@
                                         <color key="value" systemColor="systemYellowColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="eNj-IN-jyu"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="DXc-TP-Bwz"/>
+                                </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이번달 총 수익 : 500,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Me7-L3-3z6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이번달 총 수익 : 500,000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Me7-L3-3z6">
                                 <rect key="frame" x="119.5" y="323" width="175" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이번달 총 지출 : 250,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5Q-Gr-EwZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이번달 총 지출 : 250,000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5Q-Gr-EwZ">
                                 <rect key="frame" x="119.5" y="348" width="175" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -70,7 +74,9 @@
                             <constraint firstItem="Q5Q-Gr-EwZ" firstAttribute="leading" secondItem="Me7-L3-3z6" secondAttribute="leading" id="xXr-S1-nfN"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="달력" id="Njf-GF-KPn"/>
+                    <tabBarItem key="tabBarItem" title="달력" id="Njf-GF-KPn">
+                        <color key="badgeColor" red="0.1764705882" green="0.18039215689999999" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="월별 리포트" id="BTi-jS-yUU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
