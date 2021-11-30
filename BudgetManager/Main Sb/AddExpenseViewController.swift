@@ -151,22 +151,22 @@ class AddExpenseViewController: UIViewController{
     }
 }
 
-extension AddExpenseViewController: PHPickerViewControllerDelegate {
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        let itemProvider = results.first?.itemProvider
-        
-        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
-            
-            itemProvider.loadObject(ofClass: UIImage.self) {(image, error) in
-                DispatchQueue.main.async {
-                    self.selectedImage.image = image as? UIImage
-                }
-            }
-        }
-        picker.dismiss(animated: true, completion: nil)
-        print("ADf")
-    }
-}
+//extension AddExpenseViewController: PHPickerViewControllerDelegate {
+//    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+//        let itemProvider = results.first?.itemProvider
+//        
+//        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+//            
+//            itemProvider.loadObject(ofClass: UIImage.self) {(image, error) in
+//                DispatchQueue.main.async {
+//                    self.selectedImage.image = image as? UIImage
+//                }
+//            }
+//        }
+//        picker.dismiss(animated: true, completion: nil)
+//        print("ADf")
+//    }
+//}
 
 
 extension AddExpenseViewController: UITextFieldDelegate {

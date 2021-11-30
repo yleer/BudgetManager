@@ -184,6 +184,7 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isTranslucent = false
 //        print(localRealm.configuration.fileURL)
         
 //        navigationController?.navigationBar.barTintColor = .green

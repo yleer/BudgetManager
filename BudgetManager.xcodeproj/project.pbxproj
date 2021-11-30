@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		881E214D2755EF18002E1D13 /* SettingPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E214C2755EF18002E1D13 /* SettingPViewController.swift */; };
+		881E214F2755F09B002E1D13 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E214E2755F09B002E1D13 /* SettingTableViewCell.swift */; };
 		884BF004274CA42500FA3504 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884BF003274CA42500FA3504 /* DetailViewController.swift */; };
 		884FAAB6274A6D4B009F4A6A /* BudgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884FAAB5274A6D4B009F4A6A /* BudgetModel.swift */; };
 		8885D4E127489C1800A5EC57 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 8885D4E027489C1800A5EC57 /* Charts */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		488EC48CFC7F2FA8FC29D526 /* Pods-BudgetManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetManager.release.xcconfig"; path = "Target Support Files/Pods-BudgetManager/Pods-BudgetManager.release.xcconfig"; sourceTree = "<group>"; };
+		881E214C2755EF18002E1D13 /* SettingPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPViewController.swift; sourceTree = "<group>"; };
+		881E214E2755F09B002E1D13 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		884BF003274CA42500FA3504 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		884FAAB5274A6D4B009F4A6A /* BudgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetModel.swift; sourceTree = "<group>"; };
 		889FC8C42744DCAF00F16ADF /* BudgetManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,7 +168,9 @@
 			isa = PBXGroup;
 			children = (
 				88CF44F2274E512800F67A06 /* SearchViewController.swift */,
+				881E214E2755F09B002E1D13 /* SettingTableViewCell.swift */,
 				88B3BAC0274637CC00ECB3EB /* SettingSB.storyboard */,
+				881E214C2755EF18002E1D13 /* SettingPViewController.swift */,
 				88CF44F0274E4DAC00F67A06 /* SettingTableViewController.swift */,
 			);
 			path = "Setting Sb";
@@ -335,10 +341,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				88CF44F3274E512800F67A06 /* SearchViewController.swift in Sources */,
+				881E214D2755EF18002E1D13 /* SettingPViewController.swift in Sources */,
 				88CF44F1274E4DAC00F67A06 /* SettingTableViewController.swift in Sources */,
 				884BF004274CA42500FA3504 /* DetailViewController.swift in Sources */,
 				88A091352748F46A00DE4E95 /* ExpenseTableViewCell.swift in Sources */,
 				88CF44EF274DF31B00F67A06 /* DatePickerViewController.swift in Sources */,
+				881E214F2755F09B002E1D13 /* SettingTableViewCell.swift in Sources */,
 				88B3BAC42746380A00ECB3EB /* CalendarViewController.swift in Sources */,
 				889FC8CC2744DCAF00F16ADF /* ViewController.swift in Sources */,
 				889FC8C82744DCAF00F16ADF /* AppDelegate.swift in Sources */,
@@ -508,7 +516,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -541,7 +549,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

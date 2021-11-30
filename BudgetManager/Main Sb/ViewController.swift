@@ -71,8 +71,8 @@ class ViewController: UIViewController {
     
 //        
 //        tabBarController?.tabBar.barTintColor = .black
-
-        
+//
+//        
         
         self.tabBarController?.tabBar.unselectedItemTintColor = .black
         
@@ -144,6 +144,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         self.present(vc, animated: true, completion: nil)
         
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filterdTasks.count
     }
@@ -243,21 +244,21 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
         }
     }
     
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
-////        print(monthTasks)
-//        for day in filterdTasks{
-//
-//            let query = dateFormatter.string(from: date)
-//
-//            print(day.usedDate, query)
-//            if query == day.usedDate{
-//                return 1
-//            }
-//        }
-        return 1
-    }
+//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+////        let dateFormatter = DateFormatter()
+////        dateFormatter.dateFormat = "yyyy-MM-dd"
+//////        print(monthTasks)
+////        for day in filterdTasks{
+////
+////            let query = dateFormatter.string(from: date)
+////
+////            print(day.usedDate, query)
+////            if query == day.usedDate{
+////                return 1
+////            }
+////        }
+//        return 1
+//    }
 }
 
 
