@@ -9,7 +9,12 @@ import UIKit
 import PhotosUI
 import RealmSwift
 
-class AddExpenseViewController: UIViewController{
+class AddExpenseViewController: UIViewController, PHPickerViewControllerDelegate{
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        print("hello")
+    }
+    
 
     @IBOutlet weak var recipetButton: UIButton!
     @IBOutlet weak var priceTextField: UITextField!
@@ -33,6 +38,7 @@ class AddExpenseViewController: UIViewController{
     }
 
     let category = ["식료", "교육", "장보기", "의류", "의료", "교통", "레져", "여가", "여행", "기타" ]
+    
     @IBAction func categoryButtonClicked(_ sender: UIButton) {
         guard let vc =  self.storyboard?.instantiateViewController(withIdentifier: "CategoryPopUpViewController") as?  CategoryPopUpViewController else { return }
     
@@ -43,7 +49,6 @@ class AddExpenseViewController: UIViewController{
         
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: false, completion: nil)
-        
     }
     
     
@@ -71,7 +76,6 @@ class AddExpenseViewController: UIViewController{
     // MARK: UX 생각좀 해야될듯
     @IBAction func saveButtonClicked(_ sender: UIBarButtonItem) {
         
-        
         if let selectIndex = selectedCategotyIndex,
         let date = dateToAdd,
         let prcieString = priceTextField.text,
@@ -82,9 +86,6 @@ class AddExpenseViewController: UIViewController{
             if expenseSegment.selectedSegmentIndex == 0 {
                 catogry = category[selectIndex]
             }
-           
-            
-             
             
             var  payment = ""
             if paymentSegment.selectedSegmentIndex == 0 {
@@ -117,20 +118,19 @@ class AddExpenseViewController: UIViewController{
             alertVC.addAction(cancelButton)
             
             present(alertVC, animated: true, completion: nil)
-            
         }
     }
     
     
  
-    // MARK: 사진 추가 기능 나중에 추가하자.
-//    @IBAction func addImageButtonClicked(_ sender: UIBarButtonItem) {
-//        var configuration = PHPickerConfiguration()
-//        configuration.selectionLimit = 1
-//        let pickerView = PHPickerViewController(configuration: configuration)
-//        pickerView.delegate = self
-//        present(pickerView, animated: true, completion: nil)
-//    }
+//     MARK: 사진 추가 기능 나중에 추가하자.
+    @IBAction func addImageButtonClicked(_ sender: UIBarButtonItem) {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 2
+        let pickerView = PHPickerViewController(configuration: configuration)
+        pickerView.delegate = self
+        present(pickerView, animated: true, completion: nil)
+    }
     
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {

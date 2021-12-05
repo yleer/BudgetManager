@@ -162,7 +162,7 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
         let entry1 = PieChartDataEntry(value: Double(categories[0]), label: "식료")
         let entry2 = PieChartDataEntry(value: Double(categories[1]), label: "교육")
         let entry3 = PieChartDataEntry(value: Double(categories[2]), label: "장보기")
-        let entry4 = PieChartDataEntry(value: Double(categories[3]), label: "의료")
+        let entry4 = PieChartDataEntry(value: Double(categories[3]), label: "의류")
         let entry5 = PieChartDataEntry(value: Double(categories[4]), label: "의료")
         let entry6 = PieChartDataEntry(value: Double(categories[5]), label: "교통")
         let entry7 = PieChartDataEntry(value: Double(categories[6]), label: "레져")
@@ -170,7 +170,7 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
         let entry9 = PieChartDataEntry(value: Double(categories[8]), label: "여행")
         let entry10 = PieChartDataEntry(value: Double(categories[9]), label: "기타")
         
-        let dataSet = PieChartDataSet(entries: [entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10], label: "Widget Types")
+        let dataSet = PieChartDataSet(entries: [entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10], label: "카테고리")
         let data = PieChartData(dataSet: dataSet)
         dataSet.colors = ChartColorTemplates.joyful()
         pieChart.data = data
@@ -184,36 +184,15 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isTranslucent = false
-//        print(localRealm.configuration.fileURL)
-        
-//        navigationController?.navigationBar.barTintColor = .green
-//        UIColor(red: 45, green: 46, blue: 66, alpha: 1)
-        
-        
-//        self.tabBarController?.tabBar.tintColor = .systemOrange
-//        self.tabBarController?.tabBar.unselectedItemTintColor = .white
         
         tasks = localRealm.objects(BudgetModel.self)
-        let today = Date()
-        let dateFormatter2 = DateFormatter()
-        dateFormatter2.dateFormat = "yyyy-MM"
-        let query = dateFormatter2.string(from: today)
-        chosenDate = query
-        monthTasks = tasks.where {
-            $0.usedDate.contains(query)
-        }
-        pieChartUpdate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if chosenDate == "" {
-            let today = Date()
-            let dateFormatter2 = DateFormatter()
-            dateFormatter2.dateFormat = "yyyy-MM"
-            let query = dateFormatter2.string(from: today)
+            let query = DateFormatter().toYearMonthString(date: Date())
             chosenDate = query
             monthTasks = tasks.where {
                 $0.usedDate.contains(query)
@@ -238,9 +217,6 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
             
         }
         self.pieChartUpdate()
-        
-        
-        
     }
     
     @IBAction func monthButtonClicked(_ sender: UIButton) {
@@ -272,8 +248,7 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
             self.monthTasks = self.tasks.where {
                 
                 $0.usedDate.contains(self.chosenDate)
-                
-                
+    
             }
             self.pieChartUpdate()
         }))
@@ -282,12 +257,3 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
 }
 
 
-extension Int{
-    func formatIntToString () -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        let result = numberFormatter.string(for: self)!
-        
-        return result
-    }
-}

@@ -11,6 +11,9 @@
 		881E214F2755F09B002E1D13 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E214E2755F09B002E1D13 /* SettingTableViewCell.swift */; };
 		884BF004274CA42500FA3504 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884BF003274CA42500FA3504 /* DetailViewController.swift */; };
 		884FAAB6274A6D4B009F4A6A /* BudgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884FAAB5274A6D4B009F4A6A /* BudgetModel.swift */; };
+		886FD8B4275B80D20078020E /* extension  + DateForematter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886FD8B3275B80D20078020E /* extension  + DateForematter.swift */; };
+		886FD8B6275B811B0078020E /* extension + Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886FD8B5275B811B0078020E /* extension + Int.swift */; };
+		886FD8B9275B932C0078020E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886FD8B8275B932C0078020E /* Data.swift */; };
 		8885D4E127489C1800A5EC57 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 8885D4E027489C1800A5EC57 /* Charts */; };
 		889FC8C82744DCAF00F16ADF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889FC8C72744DCAF00F16ADF /* AppDelegate.swift */; };
 		889FC8CA2744DCAF00F16ADF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889FC8C92744DCAF00F16ADF /* SceneDelegate.swift */; };
@@ -46,6 +49,9 @@
 		881E214E2755F09B002E1D13 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		884BF003274CA42500FA3504 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		884FAAB5274A6D4B009F4A6A /* BudgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetModel.swift; sourceTree = "<group>"; };
+		886FD8B3275B80D20078020E /* extension  + DateForematter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension  + DateForematter.swift"; sourceTree = "<group>"; };
+		886FD8B5275B811B0078020E /* extension + Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension + Int.swift"; sourceTree = "<group>"; };
+		886FD8B8275B932C0078020E /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		889FC8C42744DCAF00F16ADF /* BudgetManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		889FC8C72744DCAF00F16ADF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		889FC8C92744DCAF00F16ADF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +113,15 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		886FD8B7275B81220078020E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				886FD8B5275B811B0078020E /* extension + Int.swift */,
+				886FD8B3275B80D20078020E /* extension  + DateForematter.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		889FC8BB2744DCAF00F16ADF = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +153,8 @@
 				889FC8D52744DCB200F16ADF /* Info.plist */,
 				88A091332748F46900DE4E95 /* ExpenseTableViewCell.swift */,
 				88A091342748F46900DE4E95 /* ExpenseTableViewCell.xib */,
+				886FD8B7275B81220078020E /* Extensions */,
+				886FD8B8275B932C0078020E /* Data.swift */,
 			);
 			path = BudgetManager;
 			sourceTree = "<group>";
@@ -349,11 +366,14 @@
 				881E214F2755F09B002E1D13 /* SettingTableViewCell.swift in Sources */,
 				88B3BAC42746380A00ECB3EB /* CalendarViewController.swift in Sources */,
 				889FC8CC2744DCAF00F16ADF /* ViewController.swift in Sources */,
+				886FD8B4275B80D20078020E /* extension  + DateForematter.swift in Sources */,
 				889FC8C82744DCAF00F16ADF /* AppDelegate.swift in Sources */,
+				886FD8B6275B811B0078020E /* extension + Int.swift in Sources */,
 				88B3BADA27466A0900ECB3EB /* MainCollectionViewCell.swift in Sources */,
 				88B3BAC62746382100ECB3EB /* MonthlyReportViewController.swift in Sources */,
 				889FC8CA2744DCAF00F16ADF /* SceneDelegate.swift in Sources */,
 				884FAAB6274A6D4B009F4A6A /* BudgetModel.swift in Sources */,
+				886FD8B9275B932C0078020E /* Data.swift in Sources */,
 				88C078D22747D0D800CF0900 /* CategoryPopUpViewController.swift in Sources */,
 				88B3BACA27463D9F00ECB3EB /* AddExpenseViewController.swift in Sources */,
 			);
@@ -513,15 +533,15 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = yle.BudgetManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -546,15 +566,15 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = yle.BudgetManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

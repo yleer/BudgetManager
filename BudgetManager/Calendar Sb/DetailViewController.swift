@@ -22,6 +22,8 @@ class DetailViewController: UIViewController {
     var task: BudgetModel?
     let localRealm = try! Realm()
     var handler : (() -> ())?
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,22 +32,17 @@ class DetailViewController: UIViewController {
         deleteButton.setTitle("", for: .normal)
         containerView.layer.cornerRadius = containerView.frame.width / 7
         
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        
         
         if let income = task?.income{
             categoryImageButton.isHidden = true
             paymentImageButton.isHidden = true
             titleLabel.text = "수익"
-            let result = numberFormatter.string(for: income)!
-            priceTextField.text = result + "원"
+            priceTextField.text = income.formatIntToString() + "원"
         }else{
             titleLabel.text = "지출"
             categoryImageButton.setTitle(task?.category, for: .normal)
             paymentImageButton.setTitle(task?.payment, for: .normal)
-            let result = numberFormatter.string(for: task?.spending!)!
-            priceTextField.text = result + "원"
+            priceTextField.text = task!.spending!.formatIntToString() + "원"
             
         }
         dateLabel.text = task?.usedDate

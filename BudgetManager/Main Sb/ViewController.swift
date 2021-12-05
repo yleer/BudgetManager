@@ -13,85 +13,88 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var historyCollectionView: UICollectionView!
     @IBOutlet weak var topCalendar: FSCalendar!
-    var selectedDate: String = ""
     @IBOutlet weak var addButton: UIButton!
-    let localRealm = try! Realm()
     @IBOutlet weak var todayTotalSpendingLabel: UILabel!
     @IBOutlet weak var remainingMoneyLabel: UILabel!
+    
+    
+    var selectedDate: String = ""
+    let localRealm = try! Realm()
     var tasks: Results<BudgetModel>!
     
   
     var filterdTasks: Results<BudgetModel>!{
         didSet{
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .decimal
-            
             var spentMoney = 0
-            for filterdTask in filterdTasks{
-                if let spending = filterdTask.spending{
-                    spentMoney = spentMoney + spending
-                }
-            }
-            todayTotalSpendingLabel.text = "오늘 쓴 금액 : \(numberFormatter.string(for: spentMoney)!)"
-            
             var remainingMoney = 0
             var totalSpent = 0
-            for allTask in tasks{
-                if let income = allTask.income{
+            
+            filterdTasks.forEach {
+                if let spent = $0.spending{
+                    spentMoney = spentMoney + spent
+                }
+            }
+
+            todayTotalSpendingLabel.text = "오늘 쓴 금액 : \(spentMoney.formatIntToString())"
+            
+            tasks.forEach {
+                if let income = $0.income {
                     remainingMoney = remainingMoney + income
                 }
-                if let spent = allTask.spending{
+                
+                if let spent = $0.spending {
                     totalSpent = totalSpent + spent
                 }
             }
-            
+       
             remainingMoney = remainingMoney - totalSpent
-            remainingMoneyLabel.text = "남은 금액 : \(numberFormatter.string(for: remainingMoney)!)"
+
+            remainingMoneyLabel.text = "남은 금액 : \(remainingMoney.formatIntToString())"
             historyCollectionView.reloadData()
         }
     }
         
     func getToday() {
-        let today = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        selectedDate = DateFormatter().toYearMonthDayString(date: Date())
+        getDateFromDB()
+    }
     
-        selectedDate = dateFormatter.string(from: today)
+    func getDateFromDB() {
         tasks = localRealm.objects(BudgetModel.self)
         filterdTasks = tasks.where {
             $0.usedDate == selectedDate
         }
         historyCollectionView.reloadData()
-//        print(localRealm.configuration.fileURL)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.tabBar.tintColor = .systemOrange
+        configureUI()
+    }
     
-//        
-//        tabBarController?.tabBar.barTintColor = .black
-//
-//        
-        
-        self.tabBarController?.tabBar.unselectedItemTintColor = .black
-        
-        fsCalendarConfigure()
+    func configureUI() {
         historyCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        fsCalendarConfigure()
+        tabBarConfigure()
+        configureButton()
+    }
+    
+    func tabBarConfigure() {
+        tabBarController?.tabBar.tintColor = .systemOrange
+        tabBarController?.tabBar.unselectedItemTintColor = .black
+    }
+    
+    func configureButton() {
         addButton.setTitle("", for: .normal)
         addButton.layer.cornerRadius = addButton.frame.width / 2
-        getToday()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if selectedDate != ""{
-            tasks = localRealm.objects(BudgetModel.self)
-            filterdTasks = tasks.where {
-                $0.usedDate == selectedDate
-            }
-            historyCollectionView.reloadData()
+            getDateFromDB()
         }else{
             getToday()
         }
@@ -153,58 +156,30 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identfier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell()}
         
         let item = filterdTasks[indexPath.item]
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
+  
+        
         if let spending =  item.spending {
             cell.priceLabel.text = "지출"
-            let result = numberFormatter.string(for: (spending))!
-            cell.remainingHistoryLabel.text = result + "원"
-            switch item.payment{
-            case PaymentMethod.card.rawValue:
-                cell.paymentImage.image = UIImage(named: "credit-card")
-            case PaymentMethod.cash.rawValue:
-                cell.paymentImage.image = UIImage(named: "dollar")
-            default:
-                print("not good")
-            }
+            cell.remainingHistoryLabel.text = spending.formatIntToString() + "원"
             
+            let paymentImage = item.payment == PaymentMethod.card.rawValue ? UIImage(named: "credit-card") : UIImage(named: "dollar")
+            cell.paymentImage.image = paymentImage
+    
             
-            if item.category == "식료"{
-                cell.categoryImage.image = UIImage(named: "diet")
-            }else if item.category == "교육"{
-                cell.categoryImage.image = UIImage(named: "education (1)")
-            }else if item.category == "장보기"{
-                cell.categoryImage.image = UIImage(named: "grocery-cart")
-            }else if item.category == "의류"{
-                cell.categoryImage.image = UIImage(named: "laundry")
-            }else if item.category == "의료"{
-                cell.categoryImage.image = UIImage(named: "pills")
-            }else if item.category == "교통"{
-                cell.categoryImage.image = UIImage(named: "vehicles")
-            }else if item.category == "레져"{
-                cell.categoryImage.image = UIImage(named: "")
-            }else if item.category == "여가"{
-                cell.categoryImage.image = UIImage(named: "watching-tv")
-            }else if item.category == "여행"{
-                cell.categoryImage.image = UIImage(named: "baggage")
-            }
-            else if item.category == "기타"{
-                cell.categoryImage.image = UIImage(named: "more")
-            }
-            
+            let image = CategoryData.category[item.category]
+            cell.categoryImage.image = image!
             
             cell.categoryImage.isHidden = false
             cell.paymentImage.isHidden = false
         }else{
+            
             cell.priceLabel.text = "수입"
-            let result = numberFormatter.string(for: (item.income!))!
+            cell.remainingHistoryLabel.text = item.income!.formatIntToString() + "원"
             
             cell.categoryImage.isHidden = true
             cell.paymentImage.isHidden = true
-            cell.remainingHistoryLabel.text = result + "원"
+            
         }
-        
-        
         cell.contentLabel.text = item.content
         
         cell.backgroundColor = .gray
@@ -236,9 +211,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
 extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        selectedDate = dateFormatter.string(from: date)
+ 
+        selectedDate = DateFormatter().toYearMonthDayString(date: date)
         filterdTasks = tasks.where {
             $0.usedDate == selectedDate
         }
@@ -260,5 +234,6 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
 //        return 1
 //    }
 }
+
 
 

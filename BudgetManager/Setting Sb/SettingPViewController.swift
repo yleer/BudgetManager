@@ -12,13 +12,9 @@ class SettingPViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isTranslucent = false
+//        navigationController?.navigationBar.isTranslucent = false
        
     }
-    
-
- 
-
 }
 
 extension SettingPViewController: UITableViewDelegate, UITableViewDataSource {
