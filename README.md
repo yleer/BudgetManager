@@ -78,12 +78,34 @@ Setting Sb 기능 구현  | 11/24 | 2H30M | 1H
 이터레이션 4 (어플의 디자인 구현하기)  <br/>(2021/11/25 ~ 2021/11/28) | 완료 날짜 | 예상 소요 시간 | 실제 소요 시간
 --- | --- | --- | --- 
 Main Sb 디자인| 11/25 | 3H |  4H
-Calendar Sb 디자인 | - | 3H | -
-Report Sb 디자인 | - | 3H | -
-Setting Sb  디자인 | - | 3H | -
-화면 전환  | - | 2H | - 
-이터레이션 진행 평가 (Readme 정리)  | - | 1H30M | - 
+Calendar Sb 디자인 | 11/26 | 3H | 5H
+Report Sb 디자인 | 11/27 | 3H | 4H
+Setting Sb  디자인 | 11/28 | 3H | 3H
+화면 전환  | 11/28 | 2H | 2H 
+이터레이션 진행 평가 (Readme 정리)  | 12/01 | 1H30M | 1H 
 
 이터레이션 4
 11/25 - 기존에 비해 이터레이션을 SB 단위로 잡아 훨씬 계획에 맞게 일하기 편해짐. 디자인에 대하여 많이 고민했는데 Pinterest 싸이트를 추천 받아 괜찮은 디자인을 적용하기로 결정하여 문제해결. 어울리는 색 찾기가 힘들었고 디자인이 다듬어지자 어플 보기가 훨씬 편해짐
 https://elements.envato.com/my-wallet-app-ios-android-ui-kit-template-2-DL79VK3?irgwc=1&clickid=xvmRKHwfCxyIUCV11SXiZ0LvUkG2gXQTj3p6UQ0&iradid=628379&utm_campaign=elements_af_177595&iradtype=TEXT_LINK&irmptype=mediapartner&utm_medium=affiliate&utm_source=impact_radius&mp=ksioks 참고하는 
+
+이터레이션 5 (출시 준비)  <br/>(2021/11/29 ~ 2021/12/01) | 완료 날짜 | 예상 소요 시간 | 실제 소요 시간
+--- | --- | --- | --- 
+기능 마무리 작업| 11/30 | 4H |  4H
+디자인 마무리 작업 | 11/30 | 4H | 5H
+앱출시 위해 스크린 샷| 11/30 | 1H | 1H
+앱출시 위한 정보 작성 | 12/01 | 1H | 1H
+이터레이션 진행 평가 (Readme 정리)  | 12/01 | 30M | 20M 
+
+12/01 성공적으로 앱 제출하였고, 현재 앱 심사 중이다.
+
+이터레이션 6 (출시 대기, 휴식 및 코드 정리)  <br/>(2021/12/01 ~ 2021/12/05) | 완료 날짜 | 예상 소요 시간 | 실제 소요 시간
+--- | --- | --- | --- 
+출시 상태 확인| 12/03 | 1H |  1H
+코드 정리| 12/05| 4H |  3H
+
+ (Readme 정리)  | 12/01 | 30M | 20M 
+12/03 앱 성공적으로 출시 완료
+중복 코드 함수로 묶어서 줄임. 
+
+
+
