@@ -10,6 +10,7 @@ import RealmSwift
 
 class BudgetModel: Object {
     
+    @Persisted var uuid: UUID
     @Persisted var usedDate : String
     @Persisted var category: String
     @Persisted var content: String

@@ -71,6 +71,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        print(localRealm.configuration.fileURL)
     }
     
     func configureUI() {

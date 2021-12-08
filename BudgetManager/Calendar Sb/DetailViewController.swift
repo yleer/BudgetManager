@@ -17,6 +17,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var contentTextField: UITextField!
     
+    @IBOutlet weak var showImageButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var containerView: UIView!
     var task: BudgetModel?
@@ -47,12 +48,73 @@ class DetailViewController: UIViewController {
         }
         dateLabel.text = task?.usedDate
         contentTextField.text = task?.content
+        
+        let imageName = "\(task!.uuid).jpg"
+        
+        if let directory = getDoucmentDirectory() {
+            let imageUrl = URL(fileURLWithPath: directory).appendingPathComponent(imageName)
+            if FileManager.default.fileExists(atPath: imageUrl.path) {
+                
+                showImageButton.isHidden = false
+            }else {
+                showImageButton.isHidden = true
+                
+            }
+            
+        }
     }
     
     @IBAction func closeButtonClicked(_ sender: UIButton) {
         dismiss(animated: true)
     }
     
+    @IBAction func seePictureButtonClicked(_ sender: UIButton) {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailImageViewController") as? DetailImageViewController  else { return }
+        
+        vc.content = contentTextField.text
+        vc.price = priceTextField.text
+        vc.tittle = titleLabel.text
+        
+        let imageName = "\(task!.uuid).jpg"
+
+        if let image = loadImageFromDocumentDirectory(imageName: imageName) {
+            vc.image = image
+        }
+        
+//        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true)
+    }
+    
+    func getDoucmentDirectory() -> String? {
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let path = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        
+        if let dirctoryPath = path.first{
+            return dirctoryPath
+        }
+        return nil
+    }
+    
+    func loadImageFromDocumentDirectory(imageName: String) -> UIImage? {
+        
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let path = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        
+        if let dirctoryPath = path.first{
+            let imageUrl = URL(fileURLWithPath: dirctoryPath).appendingPathComponent(imageName)
+            if FileManager.default.fileExists(atPath: imageUrl.path) {
+                print("good")
+                return UIImage(contentsOfFile: imageUrl.path)
+            }else {
+                print("bad")
+                return nil
+            }
+        }
+        
+        return nil
+    }
     
     @IBAction func deleteButtonClicked(_ sender: UIButton) {
         let alertVC = UIAlertController(title: "해당 내역을 삭제하시겠습니까?", message: "삭제하면 되돌릴 수 없습니다", preferredStyle: .alert)

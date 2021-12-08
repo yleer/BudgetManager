@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		881897BC275FACDB0058175A /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881897BB275FACDB0058175A /* DetailImageViewController.swift */; };
 		881E214D2755EF18002E1D13 /* SettingPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E214C2755EF18002E1D13 /* SettingPViewController.swift */; };
 		881E214F2755F09B002E1D13 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E214E2755F09B002E1D13 /* SettingTableViewCell.swift */; };
 		884BF004274CA42500FA3504 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884BF003274CA42500FA3504 /* DetailViewController.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		488EC48CFC7F2FA8FC29D526 /* Pods-BudgetManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetManager.release.xcconfig"; path = "Target Support Files/Pods-BudgetManager/Pods-BudgetManager.release.xcconfig"; sourceTree = "<group>"; };
+		881897BB275FACDB0058175A /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
 		881E214C2755EF18002E1D13 /* SettingPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPViewController.swift; sourceTree = "<group>"; };
 		881E214E2755F09B002E1D13 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		884BF003274CA42500FA3504 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				88B3BABC274637AC00ECB3EB /* CalendarSB.storyboard */,
 				88B3BAC32746380A00ECB3EB /* CalendarViewController.swift */,
 				884BF003274CA42500FA3504 /* DetailViewController.swift */,
+				881897BB275FACDB0058175A /* DetailImageViewController.swift */,
 			);
 			path = "Calendar Sb";
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				886FD8B9275B932C0078020E /* Data.swift in Sources */,
 				88C078D22747D0D800CF0900 /* CategoryPopUpViewController.swift in Sources */,
 				88B3BACA27463D9F00ECB3EB /* AddExpenseViewController.swift in Sources */,
+				881897BC275FACDB0058175A /* DetailImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

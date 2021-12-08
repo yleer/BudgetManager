@@ -8,13 +8,9 @@
 import UIKit
 import PhotosUI
 import RealmSwift
+import SwiftUI
 
-class AddExpenseViewController: UIViewController, PHPickerViewControllerDelegate{
-    
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        print("hello")
-    }
-    
+class AddExpenseViewController: UIViewController {
 
     @IBOutlet weak var recipetButton: UIButton!
     @IBOutlet weak var priceTextField: UITextField!
@@ -99,10 +95,21 @@ class AddExpenseViewController: UIViewController, PHPickerViewControllerDelegate
                 try! localRealm.write {
                     localRealm.add(task)
                 }
+                
+                if let image = self.selectedImage.image {
+                    let a = "\(task.uuid)"
+                    saveImageToDocumentDirectory(imageName: "\(a).jpg", image: image)
+                }
             }else{
                 let task = BudgetModel(usedDate: date, category: catogry, content: content, payment: payment, income: price, spending: nil)
+            
                 try! localRealm.write {
                     localRealm.add(task)
+                }
+                
+                if let image = self.selectedImage.image {
+                    let a = "\(task.uuid)"
+                    saveImageToDocumentDirectory(imageName: "\(a).jpg", image: image)
                 }
             }
             handler!()
@@ -125,8 +132,7 @@ class AddExpenseViewController: UIViewController, PHPickerViewControllerDelegate
  
 //     MARK: 사진 추가 기능 나중에 추가하자.
     @IBAction func addImageButtonClicked(_ sender: UIBarButtonItem) {
-        var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 2
+        let configuration = PHPickerConfiguration()
         let pickerView = PHPickerViewController(configuration: configuration)
         pickerView.delegate = self
         present(pickerView, animated: true, completion: nil)
@@ -149,24 +155,65 @@ class AddExpenseViewController: UIViewController, PHPickerViewControllerDelegate
         
         print(sender.selectedSegmentIndex)
     }
+    
+    func saveImageToDocumentDirectory(imageName: String, image: UIImage){
+        // 1. 이미지 저장할 경로: 다큐먼트 경로(.documentDirectory) - FileManger가 관리
+        // 샌드박스때문에 계속 위치가 바껴서 아래와 같이 경로 얻어옴.
+        // ex) /user/ios/wee6app/
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        
+        // 2. 이미지 파일 이름
+        // ex) /user/ios/wee6app/image.jpg
+        let imageUrl = documentDirectory.appendingPathComponent(imageName)
+        
+        
+        // 3. 이미지 압축 (선택)
+        guard let data = image.jpegData(compressionQuality: 0.3) else { return }
+        
+        // 4. 이미지 저장: 동일한 경로에 저장하게 될 경우, 덮어쓰기 됨
+        // 4-1. 이미지 경로 확인.
+        if FileManager.default.fileExists(atPath: imageUrl.path){
+            
+            // 4-2 기존 경로에 있는 이미지 삭제.
+            do{
+                try FileManager.default.removeItem(at: imageUrl)
+                print("이미지 삭제됨.")
+            } catch{
+                print("이미지 삭제 못했습니다.")
+            }
+        }
+        
+        // 5. 이미지를 다큐먼트에 저장
+        do{
+            try data.write(to: imageUrl)
+        } catch{
+          print("이미지 저장 못함.")
+        }
+        
+        
+    }
 }
 
-//extension AddExpenseViewController: PHPickerViewControllerDelegate {
-//    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-//        let itemProvider = results.first?.itemProvider
-//        
-//        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
-//            
-//            itemProvider.loadObject(ofClass: UIImage.self) {(image, error) in
-//                DispatchQueue.main.async {
-//                    self.selectedImage.image = image as? UIImage
-//                }
-//            }
-//        }
-//        picker.dismiss(animated: true, completion: nil)
-//        print("ADf")
-//    }
-//}
+extension AddExpenseViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        let itemProvider = results.first?.itemProvider
+        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) {(image, error) in
+                
+                guard let image = image as? UIImage else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.selectedImage.image = image
+                }
+            }
+        }
+        
+        
+        picker.dismiss(animated: true, completion: nil)
+        print("ADf")
+    }
+}
 
 
 extension AddExpenseViewController: UITextFieldDelegate {
