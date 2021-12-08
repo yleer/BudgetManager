@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Zip
 import RealmSwift
 
 class SettingPViewController: UIViewController {
@@ -15,6 +16,81 @@ class SettingPViewController: UIViewController {
 //        navigationController?.navigationBar.isTranslucent = false
        
     }
+    
+    func documentDirectoryPath() -> String? {
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        
+        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let path = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        
+        if let directoryPath = path.first{
+            return directoryPath
+        }else{
+            return nil
+        }
+    }
+    
+    func presentActivityViewController() {
+        // 압축 파일 경로 가져오기
+        let fileName = (documentDirectoryPath()! as NSString).appendingPathComponent("archive4.zip")
+        let fileUrl = URL(fileURLWithPath: fileName)
+        
+        let vc = UIActivityViewController(activityItems: [fileUrl], applicationActivities: [])
+        
+        self.present(vc, animated: true, completion: nil)
+        
+    }
+    
+    func backUp() {
+        // 4. 백업할 파일에 대한 url 배열
+        var urlPaths = [URL]()
+ 
+        // 1. 폴더 위치 확인 (/user/app/ios/appname)
+        if let path = documentDirectoryPath(){
+            // 2. 백업하고자 하는 파일 url 확인.
+            // 이미지 같은 경우 백업 편의성을 위해 폴더에 담는게 좋음.
+            let realm = (path as NSString).appendingPathComponent("default.realm")
+            
+            if FileManager.default.fileExists(atPath: realm){
+                // 5. URL 배열에 백업 파일 url 추가
+                urlPaths.append(URL(string: realm)!)
+                
+                // MARK: .jpg로 시작하는 url들 다 urlPaths에 추가해야됨.
+                
+                do {
+                    let result = try FileManager.default.contentsOfDirectory(atPath: path)
+        
+                    for item in result{
+                        if item.contains(".jpg"){
+                            
+                            let imageUrl = (path as NSString).appendingPathComponent(item)
+                            urlPaths.append(URL(string: imageUrl)!)
+                        }
+                    }
+                }catch{
+                    print("error")
+                }
+                
+            }else{
+                print("백업할 파일이 없습니다. ")
+            }
+            
+            // 2. 백업하고자 하는 파일 확인.
+        }
+        
+        print(urlPaths)
+        
+        //3.  배열에 대한 압축 파일 만들기.
+        do {
+            let zipFilePath = try Zip.quickZipFiles(urlPaths, fileName: "archive4") // Zip
+            print("압축경로 \(zipFilePath)")
+            presentActivityViewController()
+        }
+        catch {
+          print("Something went wrong")
+        }
+    }
+    
 }
 
 extension SettingPViewController: UITableViewDelegate, UITableViewDataSource {
@@ -27,8 +103,12 @@ extension SettingPViewController: UITableViewDelegate, UITableViewDataSource {
             cell.title.text = "검색하기"
         }else if indexPath.row == 1{
             cell.title.text = "전체 데이터 삭제"
-        }else{
+        }else if indexPath.row == 2{
             cell.title.text = "리뷰 남기기"
+        }else if indexPath.row == 3{
+            cell.title.text = "백업하기"
+        }else{
+            cell.title.text = "복구하기"
         }
         
         
@@ -39,7 +119,7 @@ extension SettingPViewController: UITableViewDelegate, UITableViewDataSource {
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-            return 3
+            return 5
     }
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -66,6 +146,34 @@ extension SettingPViewController: UITableViewDelegate, UITableViewDataSource {
             alertVC.addAction(cancelButton)
             
             present(alertVC, animated: true, completion: nil)
-        }
+         }else if indexPath.row == 3{
+             
+             let alertVC = UIAlertController(title: "전체 데이터를 백업하시겠습니까?", message: "백업을 하면 백업파일이 생성됩니다.", preferredStyle: .actionSheet)
+             
+             let okButton = UIAlertAction(title: "확인", style: .destructive, handler: { _ in
+                 
+                 // MARK: back up
+                 self.backUp()
+             })
+             let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+             
+             alertVC.addAction(okButton)
+             alertVC.addAction(cancelButton)
+             present(alertVC, animated: true, completion: nil)
+         }else if indexPath.row == 4 {
+             
+             let alertVC = UIAlertController(title: "데이터를 복원하시겠습니까?", message: "현재의 데이터가 백업데이터로 대체 됩니다.", preferredStyle: .actionSheet)
+             
+             let okButton = UIAlertAction(title: "확인", style: .destructive, handler: { _ in
+                 // MARK: restore
+                 
+                
+             })
+             let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+             
+             alertVC.addAction(okButton)
+             alertVC.addAction(cancelButton)
+             present(alertVC, animated: true, completion: nil)
+         }
     }
 }

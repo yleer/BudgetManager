@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Zip
 import RealmSwift
 
 class SettingTableViewController: UITableViewController {
@@ -14,6 +15,51 @@ class SettingTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
     }
+    
+    func documentDirectoryPath() -> String? {
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        
+        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let path = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        
+        if let directoryPath = path.first{
+            return directoryPath
+        }else{
+            return nil
+        }
+    }
+    
+    func backUp() {
+        // 4. 백업할 파일에 대한 url 배열
+        var urlPaths = [URL]()
+ 
+        // 1. 폴더 위치 확인 (/user/app/ios/appname)
+        if let path = documentDirectoryPath(){
+            // 2. 백업하고자 하는 파일 url 확인.
+            // 이미지 같은 경우 백업 편의성을 위해 폴더에 담는게 좋음.
+            let realm = (path as NSString).appendingPathComponent("default.realm")
+            
+            if FileManager.default.fileExists(atPath: realm){
+                // 5. URL 배열에 백업 파일 url 추가
+                urlPaths.append(URL(string: realm)!)
+            }else{
+                print("백업할 파일이 없습니다. ")
+            }
+            
+            // 2. 백업하고자 하는 파일 확인.
+        }
+        
+        //3.  배열에 대한 압축 파일 만들기.
+        do {
+            let zipFilePath = try Zip.quickZipFiles(urlPaths, fileName: "archive") // Zip
+            print("압축경로 \(zipFilePath)")
+//            presentActivityViewController()
+        }
+        catch {
+          print("Something went wrong")
+        }
+    }
+    
 
     // MARK: - Table view data source
 

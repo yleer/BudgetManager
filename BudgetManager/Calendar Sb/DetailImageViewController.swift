@@ -29,9 +29,5 @@ class DetailImageViewController: UIViewController {
         if let image = image {
             imageView.image = image
         }
-
-     
     }
-    
-
 }
