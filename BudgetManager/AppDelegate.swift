@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().barTintColor = UIColor(red: 44/255, green: 48/255, blue: 66/255, alpha: 1)
 
         
+        let attributes = [NSAttributedString.Key.font:UIFont(name: "American Typewriter", size: 20)]
+        
+                          UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .normal)
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true

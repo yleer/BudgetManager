@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 import Zip
 import RealmSwift
 
@@ -166,7 +167,10 @@ extension SettingPViewController: UITableViewDelegate, UITableViewDataSource {
              
              let okButton = UIAlertAction(title: "확인", style: .destructive, handler: { _ in
                  // MARK: restore
-                 
+                 let documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeArchive as String], in: .import)
+                 documentPicker.delegate = self
+                 documentPicker.allowsMultipleSelection = false
+                 self.present(documentPicker, animated: true, completion: nil)
                 
              })
              let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -175,5 +179,61 @@ extension SettingPViewController: UITableViewDelegate, UITableViewDataSource {
              alertVC.addAction(cancelButton)
              present(alertVC, animated: true, completion: nil)
          }
+    }
+}
+extension SettingPViewController: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        
+        // 복구 2. 선택한 파일의 경로를 가져와야함
+        guard let selectedFileUrl = urls.first else { return }
+        print(selectedFileUrl)
+        
+        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let sandBoxFileUrl = directory.appendingPathComponent(selectedFileUrl.lastPathComponent)
+
+        // 복구 3. 압축 해제
+
+        if FileManager.default.fileExists(atPath: sandBoxFileUrl.path) {
+            // 기존에 복구하고자 하는 zip파일을 다큐멘트에서 가지고 있는 경우, 도큐먼트에 위치한 곳에 unzip하면 됨.
+            do{
+                let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let fileUrl = documentDirectory.appendingPathComponent(sandBoxFileUrl.lastPathComponent)
+                try Zip.unzipFile(fileUrl, destination: documentDirectory, overwrite: true, password: nil, progress: { progress in
+                    print(progress)
+                }, fileOutputHandler: { unzippedFile in
+                    print(unzippedFile)
+                })
+                
+                
+                let alertVC = UIAlertController(title: "복구가 성공했습니다", message: "어플을 끄고 다시 실행해 주세요.", preferredStyle: .alert)
+                let cancelButton = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+                alertVC.addAction(cancelButton)
+                present(alertVC, animated: true, completion: nil)
+                
+            }catch{
+                print("not good ")
+            }
+
+        }else{
+            // 파일 앱의 zip -> 다큐먼트에 복사.
+            do{
+                try FileManager.default.copyItem(at: selectedFileUrl, to: sandBoxFileUrl)
+                let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let fileUrl = documentDirectory.appendingPathComponent("archive4.zip")
+                try Zip.unzipFile(fileUrl, destination: documentDirectory, overwrite: true, password: nil, progress: { progress in
+                    print(progress)
+                }, fileOutputHandler: { unzippedFile in
+                    print(unzippedFile)
+                })
+                
+                let alertVC = UIAlertController(title: "복구가 성공했습니다", message: "어플을 끄고 다시 실행해 주세요.", preferredStyle: .alert)
+                let cancelButton = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+                alertVC.addAction(cancelButton)
+                present(alertVC, animated: true, completion: nil)
+                
+            }catch{
+                print("error")
+            }
+        }
     }
 }

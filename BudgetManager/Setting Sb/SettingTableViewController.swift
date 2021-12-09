@@ -14,6 +14,7 @@ class SettingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
+        
     }
     
     func documentDirectoryPath() -> String? {
