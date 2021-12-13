@@ -9,6 +9,7 @@ import UIKit
 import PhotosUI
 import RealmSwift
 import SwiftUI
+import Firebase
 
 class AddExpenseViewController: UIViewController {
 
@@ -71,7 +72,7 @@ class AddExpenseViewController: UIViewController {
     
     // MARK: UX 생각좀 해야될듯
     @IBAction func saveButtonClicked(_ sender: UIBarButtonItem) {
-        
+        Analytics.logEvent("Save_button", parameters: nil)
         if let selectIndex = selectedCategotyIndex,
         let date = dateToAdd,
         let prcieString = priceTextField.text,
@@ -132,6 +133,8 @@ class AddExpenseViewController: UIViewController {
  
 //     MARK: 사진 추가 기능 나중에 추가하자.
     @IBAction func addImageButtonClicked(_ sender: UIBarButtonItem) {
+        Analytics.logEvent("Add_images", parameters: nil)
+        
         let configuration = PHPickerConfiguration()
         let pickerView = PHPickerViewController(configuration: configuration)
         pickerView.delegate = self

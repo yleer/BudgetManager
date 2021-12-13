@@ -238,7 +238,7 @@
                                                     <action selector="saveButtonClicked:" destination="ieK-ds-zsf" id="E7N-VU-cFN"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="Item" id="uiH-iH-kai">
+                                            <barButtonItem title="사진추가" id="uiH-iH-kai">
                                                 <connections>
                                                     <action selector="addImageButtonClicked:" destination="ieK-ds-zsf" id="Ocl-Fv-d7f"/>
                                                 </connections>

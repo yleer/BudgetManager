@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 import RealmSwift
 import FSCalendar
 
@@ -72,8 +73,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         print(localRealm.configuration.fileURL)
+      
     }
     
+  
     func configureUI() {
         historyCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         fsCalendarConfigure()
@@ -110,6 +113,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func addButtonClicked(_ sender: UIButton) {
+        
+        Analytics.logEvent("Add_button", parameters: nil)
+        
+        
         guard let vc =  self.storyboard?.instantiateViewController(withIdentifier: "AddExpenseViewController") as?  AddExpenseViewController else { return }
         
         vc.modalPresentationStyle = .fullScreen

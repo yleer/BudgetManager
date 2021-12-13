@@ -7,6 +7,10 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import RealmSwift
+import Firebase
+
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,9 +25,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let attributes = [NSAttributedString.Key.font:UIFont(name: "American Typewriter", size: 20)]
         
                           UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+        
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        
+        
+        let config = Realm.Configuration(
+            schemaVersion: 2,
+            migrationBlock: { migration, oldSchemaVersion in
+                if oldSchemaVersion < 2 {
+                    // Rename the "age" property to "yearsSinceBirth".
+                    // The renaming operation should be done outside of calls to `enumerateObjects(ofType: _:)`.
+                    migration.enumerateObjects(ofType: BudgetModel.className()) { oldObject, newObject in
+                        newObject!["uuid"] = UUID()
+                    }
+                }
+            })
+        
+        
+        Realm.Configuration.defaultConfiguration = config
+        
+        FirebaseApp.configure()
+        
         return true
     }
 

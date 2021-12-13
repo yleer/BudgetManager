@@ -9,11 +9,15 @@ import UIKit
 import RealmSwift
 import Charts
 
+
+
+
 class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     
-    var chosenYear = 2021
-    var chosenMonth = 11
+    var today = Date()
+    lazy var chosenYear = DateFormatter().toYearInt(date: today)
+    lazy var chosenMonth = DateFormatter().toMonthInt(date: today)
     
     
     let year: [Int] = Array(2000...2030)
