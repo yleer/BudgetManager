@@ -19,12 +19,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var remainingMoneyLabel: UILabel!
     
     
-    var selectedDate: String = ""
-    let localRealm = try! Realm()
-    var tasks: Results<BudgetModel>!
+    private var selectedDate: String = ""
+    private let localRealm = try! Realm()
+    private var tasks: Results<BudgetModel>!
     
   
-    var filterdTasks: Results<BudgetModel>!{
+    private var filterdTasks: Results<BudgetModel>!{
         didSet{
             var spentMoney = 0
             var remainingMoney = 0
@@ -55,12 +55,12 @@ class ViewController: UIViewController {
         }
     }
         
-    func getToday() {
+    private func getToday() {
         selectedDate = DateFormatter().toYearMonthDayString(date: Date())
         getDateFromDB()
     }
     
-    func getDateFromDB() {
+    private func getDateFromDB() {
         tasks = localRealm.objects(BudgetModel.self)
         filterdTasks = tasks.where {
             $0.usedDate == selectedDate
@@ -77,19 +77,19 @@ class ViewController: UIViewController {
     }
     
   
-    func configureUI() {
+    private func configureUI() {
         historyCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         fsCalendarConfigure()
         tabBarConfigure()
         configureButton()
     }
     
-    func tabBarConfigure() {
+    private func tabBarConfigure() {
         tabBarController?.tabBar.tintColor = .systemOrange
         tabBarController?.tabBar.unselectedItemTintColor = .black
     }
     
-    func configureButton() {
+    private func configureButton() {
         addButton.setTitle("", for: .normal)
         addButton.layer.cornerRadius = addButton.frame.width / 2
     }
@@ -105,7 +105,7 @@ class ViewController: UIViewController {
     }
     
     
-    func fsCalendarConfigure() {
+    private func fsCalendarConfigure() {
         topCalendar.appearance.headerMinimumDissolvedAlpha = 0.0
         topCalendar.appearance.headerDateFormat = "YYYY년 M월"
         topCalendar.locale = Locale(identifier: "ko_KR")

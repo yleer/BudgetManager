@@ -85,7 +85,7 @@ class DetailViewController: UIViewController {
         self.present(vc, animated: true)
     }
     
-    func getDoucmentDirectory() -> String? {
+    private func getDoucmentDirectory() -> String? {
         let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
         let path = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
@@ -96,7 +96,7 @@ class DetailViewController: UIViewController {
         return nil
     }
     
-    func loadImageFromDocumentDirectory(imageName: String) -> UIImage? {
+    private func loadImageFromDocumentDirectory(imageName: String) -> UIImage? {
         
         let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask

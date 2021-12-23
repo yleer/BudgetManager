@@ -21,11 +21,10 @@ class AddExpenseViewController: UIViewController {
     @IBOutlet weak var expenseSegment: UISegmentedControl!
     @IBOutlet weak var paymentSegment: UISegmentedControl!
     
-    var selectedCategotyIndex: Int?
+    private let localRealm = try! Realm()
+    private var selectedCategotyIndex: Int?
+    
     var dateToAdd: String?
-    
-    let localRealm = try! Realm()
-    
     var handler: (() -> ())?
     
     override func viewDidLoad() {
@@ -34,7 +33,7 @@ class AddExpenseViewController: UIViewController {
         recipetButton.isHidden = true
     }
 
-    let category = ["식료", "교육", "장보기", "의류", "의료", "교통", "레져", "여가", "여행", "기타" ]
+    private let category = ["식료", "교육", "장보기", "의류", "의료", "교통", "레져", "여가", "여행", "기타" ]
     
     @IBAction func categoryButtonClicked(_ sender: UIButton) {
         guard let vc =  self.storyboard?.instantiateViewController(withIdentifier: "CategoryPopUpViewController") as?  CategoryPopUpViewController else { return }
@@ -159,7 +158,7 @@ class AddExpenseViewController: UIViewController {
         print(sender.selectedSegmentIndex)
     }
     
-    func saveImageToDocumentDirectory(imageName: String, image: UIImage){
+    private func saveImageToDocumentDirectory(imageName: String, image: UIImage){
         // 1. 이미지 저장할 경로: 다큐먼트 경로(.documentDirectory) - FileManger가 관리
         // 샌드박스때문에 계속 위치가 바껴서 아래와 같이 경로 얻어옴.
         // ex) /user/ios/wee6app/

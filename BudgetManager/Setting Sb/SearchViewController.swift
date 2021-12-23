@@ -12,9 +12,9 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchedTableView: UITableView!
     
-    let localRealm = try! Realm()
-    var tasks: Results<BudgetModel>!
-    var filteredTasks: Results<BudgetModel>!
+    private let localRealm = try! Realm()
+    private var tasks: Results<BudgetModel>!
+    private var filteredTasks: Results<BudgetModel>!
     override func viewDidLoad() {
         super.viewDidLoad()
         tasks = localRealm.objects(BudgetModel.self)
@@ -23,7 +23,7 @@ class SearchViewController: UIViewController {
         searchedTableView.register(nibName, forCellReuseIdentifier: "ExpenseTableViewCell")
         self.navigationController?.navigationBar.tintColor = .systemOrange
     }
-    var query = ""
+    private var query = ""
 }
 
 extension SearchViewController: UISearchBarDelegate {

@@ -10,12 +10,12 @@ import UIKit
 class DatePickerViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIPickerView!
-    var chosenYear = 1
-    var chosenMonth = 2
+    private var chosenYear = 1
+    private var chosenMonth = 2
     
     
-    let year: [Int] = Array(2000...2030)
-    let month: [Int] = Array(1...12)
+    private let year: [Int] = Array(2000...2030)
+    private let month: [Int] = Array(1...12)
     var buttonActionHandler: (() -> ())?
     
     

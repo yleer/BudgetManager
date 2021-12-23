@@ -10,28 +10,26 @@ import FSCalendar
 import RealmSwift
 
 class CalendarViewController: UIViewController {
-//https://github.com/annalizhaz/ChartsForSwiftBasic
- 
+     
+    @IBOutlet weak var currentMonthIncome: UILabel!
+    @IBOutlet weak var currentMonthSpending: UILabel!
     @IBOutlet weak var calendarView: FSCalendar!
     @IBOutlet weak var expenseTableView: UITableView!
-    var selectedDate: String = ""
     
-    let localRealm = try! Realm()
-    var tasks: Results<BudgetModel>!
-    var monthTasks: Results<BudgetModel>!
+    private var selectedDate: String = ""
+    private let localRealm = try! Realm()
+    private var tasks: Results<BudgetModel>!
+    private var monthTasks: Results<BudgetModel>!
     {
         didSet{
             calendarView.reloadData()
         }
     }
     
-    @IBOutlet weak var currentMonthIncome: UILabel!
-    @IBOutlet weak var currentMonthSpending: UILabel!
-    
-    var chosenDayTasks: Results<BudgetModel>!
+    private var chosenDayTasks: Results<BudgetModel>!
     
     
-    func updateLabels() {
+    private func updateLabels() {
         var spending = 0
         var income = 0
         for task in monthTasks{
@@ -91,7 +89,7 @@ class CalendarViewController: UIViewController {
         configureCalendarView()
     }
     
-    func configureCalendarView() {
+    private func configureCalendarView() {
         calendarView.appearance.borderRadius = 3
         calendarView.appearance.headerMinimumDissolvedAlpha = 0.0
 

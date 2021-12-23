@@ -15,13 +15,13 @@ import Charts
 class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     
-    var today = Date()
-    lazy var chosenYear = DateFormatter().toYearInt(date: today)
-    lazy var chosenMonth = DateFormatter().toMonthInt(date: today)
+    private var today = Date()
+    private lazy var chosenYear = DateFormatter().toYearInt(date: today)
+    private lazy var chosenMonth = DateFormatter().toMonthInt(date: today)
     
     
-    let year: [Int] = Array(2000...2030)
-    let month: [Int] = Array(1...12)
+    private let year: [Int] = Array(2000...2030)
+    private let month: [Int] = Array(1...12)
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -67,13 +67,13 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     @IBOutlet weak var percentageLabel: UILabel!
     
-    let localRealm = try! Realm()
-    var tasks: Results<BudgetModel>!
+    private let localRealm = try! Realm()
+    private var tasks: Results<BudgetModel>!
     
-    var monthSpending = 0
-    var monthIncome = 0
+    private var monthSpending = 0
+    private var monthIncome = 0
     
-    var monthTasks: Results<BudgetModel>! {
+    private var monthTasks: Results<BudgetModel>! {
         didSet{
             monthSpending = 0
             monthIncome = 0
@@ -132,9 +132,9 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
             }
         }
     }
-    let pickerFrame = UIPickerView(frame: CGRect(x: 5, y: 20, width: 250, height: 140))
+    private let pickerFrame = UIPickerView(frame: CGRect(x: 5, y: 20, width: 250, height: 140))
     
-    func pieChartUpdate() {
+    private func pieChartUpdate() {
         var categories: [Int] = [0,0,0,0,0,0,0,0,0,0]
         for task in monthTasks{
             if task.spending != nil{
@@ -184,7 +184,7 @@ class MonthlyReportViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     
     
-    var chosenDate = ""
+    private var chosenDate = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -18,7 +18,7 @@ class SettingPViewController: UIViewController {
        
     }
     
-    func documentDirectoryPath() -> String? {
+    private func documentDirectoryPath() -> String? {
         let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
         
         let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
@@ -31,7 +31,7 @@ class SettingPViewController: UIViewController {
         }
     }
     
-    func presentActivityViewController() {
+    private func presentActivityViewController() {
         // 압축 파일 경로 가져오기
         let fileName = (documentDirectoryPath()! as NSString).appendingPathComponent("archive4.zip")
         let fileUrl = URL(fileURLWithPath: fileName)
@@ -42,7 +42,7 @@ class SettingPViewController: UIViewController {
         
     }
     
-    func backUp() {
+    private func backUp() {
         // 4. 백업할 파일에 대한 url 배열
         var urlPaths = [URL]()
  
@@ -98,8 +98,7 @@ extension SettingPViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as? SettingTableViewCell else {return UITableViewCell()}
         
-        
-        
+
         if indexPath.row == 0 {
             cell.title.text = "검색하기"
         }else if indexPath.row == 1{
@@ -112,10 +111,7 @@ extension SettingPViewController: UITableViewDelegate, UITableViewDataSource {
             cell.title.text = "복구하기"
         }
         
-        
-        
         return cell
-        
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
