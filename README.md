@@ -19,7 +19,7 @@
 ## Approach
  - Swift
  - Realm
- - FScalendar - https://github.com/HeroTransitions/Hero
+ - FScalendar
  - Almofire 
 
 
